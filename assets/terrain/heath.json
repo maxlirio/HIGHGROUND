@@ -1,0 +1,30 @@
+{
+  "name": "heath",
+  "tile_m": 12.0,
+  "res": 1024,
+  "avg_srgb": "#67504b",
+  "avg_linear": [
+    0.1348,
+    0.0794,
+    0.0694
+  ],
+  "height_range_m": 0.6605,
+  "height_min_m": -0.0542,
+  "rough_mean": 0.805,
+  "normal_boost": 0.5,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.011,
+    "height": 1.084,
+    "rough": 0.399
+  },
+  "notes": "Heather heath in bloom: dusky purple-brown heather clumps, sandy-peat gaps, wiry grass.",
+  "displace_m": 0.0,
+  "aliases": [
+    "heather",
+    "heathland",
+    "heath_heather"
+  ],
+  "macro_hint": "tile holds <=3 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "A-vegetated"
+}

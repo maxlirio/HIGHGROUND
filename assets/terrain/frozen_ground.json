@@ -1,0 +1,27 @@
+{
+  "name": "frozen_ground",
+  "tile_m": 4.0,
+  "res": 1024,
+  "avg_srgb": "#746c61",
+  "avg_linear": [
+    0.1758,
+    0.1513,
+    0.1197
+  ],
+  "height_range_m": 0.1479,
+  "height_min_m": -0.0335,
+  "rough_mean": 0.762,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.103,
+    "height": 1.088,
+    "rough": 0.996
+  },
+  "notes": "Frozen ground: iron-hard frozen soil and ruts, white hoar-frost on every exposed crest, frozen puddles (milky ice with white bubble/cracks), frost-killed grass tufts.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "frozen_ground"
+  ]
+}

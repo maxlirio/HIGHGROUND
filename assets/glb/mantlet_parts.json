@@ -1,0 +1,66 @@
+{
+  "asset": "mantlet",
+  "glb": "assets/glb/mantlet.glb",
+  "units": "metres",
+  "ground": "z=0 (blender) / y=0 (glTF)",
+  "front": "-Y blender / +Z glTF",
+  "body_meshes": [
+    "body_LOD0",
+    "body_LOD1"
+  ],
+  "states": {
+    "complete": "assets/glb/mantlet.glb",
+    "burnt": "assets/glb/mantlet_burnt.glb"
+  },
+  "static_states": "every non-complete state is a single static body (no part nodes)",
+  "lod0_tris": {
+    "body": 884,
+    "body_LOD1": 600,
+    "wheel_l": 142,
+    "wheel_r": 142
+  },
+  "parts": {
+    "wheel_l": {
+      "parent": null,
+      "axis": "X",
+      "rest": "any (rolls)",
+      "node": "wheel_l",
+      "pivot_blender": [
+        1.02,
+        -0.2,
+        0.24
+      ],
+      "pivot_gltf": [
+        1.02,
+        0.24,
+        0.2
+      ],
+      "local_offset_gltf": [
+        1.02,
+        0.24,
+        0.2
+      ]
+    },
+    "wheel_r": {
+      "parent": null,
+      "axis": "X",
+      "rest": "any (rolls)",
+      "node": "wheel_r",
+      "pivot_blender": [
+        -1.02,
+        -0.2,
+        0.24
+      ],
+      "pivot_gltf": [
+        -1.02,
+        0.24,
+        0.2
+      ],
+      "local_offset_gltf": [
+        -1.02,
+        0.24,
+        0.2
+      ]
+    }
+  }
+}

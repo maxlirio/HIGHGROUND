@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HIGHGROUND · figure viewer</title>
+<!-- Figure viewer / bench for js/render/figures.js without the sim.
+  tools/figview.html?arms=villager,spearmen            one row per state (idle walk run fight work fleeing down) per arm, both teams
+  tools/figview.html?crowd=3000&arms=spearmen,villager  3,000 men in company blocks; add &bench to measure
+  camera: &cam=x,y,z&at=x,y,z (three.js coords, y up)   &auto rotates slowly
+  The page title carries the result when &bench is given. -->
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+} }
+</script>
+<style>html,body{margin:0;height:100%;background:#9fb2c2;overflow:hidden}canvas{display:block;width:100%;height:100%}
+#info{position:fixed;left:8px;top:6px;font:12px/1.3 system-ui;color:#fff;text-shadow:0 1px 2px #000}</style>
+</head>
+<body>
+<canvas id="v"></canvas><div id="info"></div>
+<script type="module">
+import * as THREE from "three";
+import { makeSoldiers, S_IDLE, S_MOVE, S_FIGHT, S_FLEE, S_DOWN, S_DEAD, S_WORK } from "../js/sim/soldiers.js";
+import { ARMS, pickWeighted } from "../js/sim/arms.js";
+import { WEAPON_BY_ID, KIT_ID, sampleKitMask } from "../js/sim/kit.js";
+import { makeFigures } from "../js/render/figures.js";
+import { SUN_DIR } from "../js/render/terrain.js";
+import { TEAM } from "../js/render/dots.js";
+
+const P = new URLSearchParams(location.search);
+TEAM[0].set("#2a55a5"); TEAM[1].set("#b0282a");
+const renderer = new THREE.WebGLRenderer({ canvas: document.querySelector("#v"), antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+const scene = new THREE.Scene(); scene.background = new THREE.Color("#a9bfd3");
+const sun = new THREE.DirectionalLight("#fff3dc", 2.2); sun.position.copy(SUN_DIR).multiplyScalar(1000); scene.add(sun);
+scene.add(new THREE.HemisphereLight("#bcd2ea", "#4a4032", 0.9));
+const ground = new THREE.Mesh(new THREE.PlaneGeometry(2000, 2000), new THREE.MeshStandardMaterial({ color: "#6b6a3c", roughness: 1 }));
+ground.rotation.x = -Math.PI / 2; ground.position.set(2000, 0, -2000); scene.add(ground);
+const map = { size: 4000, h: () => 0 };
+const cam = new THREE.PerspectiveCamera(35, 1, 0.3, 5000);
+
+const S = makeSoldiers(8192), units = new Map(), shooters = [];
+const w = { S, units, time: 0 };
+const arms = (P.get("arms") || "villager,spearmen").split(",");
+const ORIGIN = 2000;
+function man(x, y, team, arm, state, speed = 0, face = Math.PI / 2, extra = {}) {
+  const i = S.n++; S.x[i] = ORIGIN + x; S.y[i] = ORIGIN + y; S.team[i] = team; S.arm[i] = ARMS[arm].id; S.state[i] = state;
+  S.alive[i] = state === S_DEAD || state === S_DOWN ? 0 : 1; S.facing[i] = face; S.name[i] = (Math.random() * 2 ** 30) | 0;
+  S.vx[i] = Math.cos(face) * speed; S.vy[i] = Math.sin(face) * speed; S.unit[i] = extra.unit ?? 0;
+  // kit as the sim draws it (js/sim/soldiers.js): weapon, shield (none with a two-hander), armour layers, pavise
+  const A = ARMS[arm], rng = { next: Math.random };
+  S.weapon[i] = pickWeighted(rng, A.weapons); S.shield[i] = WEAPON_BY_ID[S.weapon[i]].twoHand ? 0 : pickWeighted(rng, A.shields);
+  S.pavise[i] = A.pavise ? 1 : 0; S.rank[i] = extra.rank ?? 0; S.shieldArm[i] = S.shield[i] ? 1 : 0; S.side[i] = 0;
+  if (extra.weapon) S.weapon[i] = extra.weapon;
+  S.horse[i] = A.horse || 0; S.horseOK[i] = S.horse[i] && !extra.unhorsed ? 1 : 0; S.kitMask[i] = sampleKitMask(KIT_ID[A.kit], rng) | (extra.barded ? 1 << 30 : 0);
+  if (extra.shoot) shooters.push(i);
+  return i;
+}
+units.set(1, { id: 1, job: { kind: "field" } }); units.set(2, { id: 2, job: { kind: "gather", res: "timber" } });
+// more villager jobs (js/render/figures.js VILLAGER_KIT): men cycle through JOBU by their index
+units.set(4, { id: 4, job: { kind: "gather", res: "stone" } }); units.set(5, { id: 5, job: { kind: "build" } });
+units.set(6, { id: 6, job: { kind: "gather", res: "fresh", node: { kind: "fishery" } } }); units.set(7, { id: 7, job: { kind: "field", b: { field: { state: "ripe" } } } });
+units.set(8, { id: 8, job: { kind: "firefight" } }); units.set(9, { id: 9, job: { kind: "home" } });
+const JOBU = [1, 2, 4, 5, 6, 7, 8, 9];
+units.set(3, { id: 3, formation: "schiltron", team: 0, members: [0], ax: 0, ay: 0 });   // pikemen here stand to receive horse
+const crowd = +(P.get("crowd") || 0);
+let drive = null;
+if (P.has("duel")) { const B = await import("./figview-battle.js"); drive = B.stageBattle(P, w, man, ORIGIN); }
+else if (!crowd) { // the line-up: a row per state
+  const rows = [["idle", S_IDLE, 0], ["walk", S_MOVE, 1.3], ["run", S_MOVE, 3.4], ["fight", S_FIGHT, 0], ["work", S_WORK, 0], ["flee", S_FLEE, 3.5], ["down", S_DOWN, 0], ["shoot/brace", S_IDLE, 0]];
+  const mrows = [["idle", S_IDLE, 0], ["walk", S_MOVE, 1.3], ["trot", S_MOVE, 3.5], ["canter", S_MOVE, 6], ["gallop", S_MOVE, 9], ["fight", S_FIGHT, 0], ["down", S_DOWN, 0]];
+  arms.forEach((arm, a) => { const mt = ARMS[arm].mounted, R = mt ? mrows : rows, sp_ = mt ? 3.2 : 1.3, rs = mt ? 4 : 2.6;
+    const nPer = arm === "villager" ? JOBU.length : 6; // villagers: one man per job loadout in each row
+    R.forEach(([nm, st, sp], r) => { for (let k = 0; k < nPer; k++) man((k - (nPer - 1) / 2) * sp_ + a * 9 * (mt ? 2.2 : 1) - (arms.length - 1) * 4.5, r * rs - 7, k % 2, arm, st, sp, -Math.PI / 2 + (P.has("side") ? Math.PI / 2 : 0),
+      nm === "shoot/brace" ? { unit: 3, shoot: !!ARMS[arm].missile, rank: k < 3 ? 0 : 2 } : { unit: JOBU[k % JOBU.length], barded: k % 3 === 0 }); }); });
+} else { // company blocks, two sides facing each other, some fighting, some marching
+  let k = 0;
+  while (S.n < crowd) {
+    const blk = k++, team = blk % 2, arm = arms[(blk >> 1) % arms.length], col = (blk >> 1) % 6, row = Math.floor(blk / 12);
+    const bx = (col - 2.5) * 32, by = (team ? 6 : -6) + (team ? 1 : -1) * row * 26;
+    const st = row === 0 ? S_FIGHT : row % 2 ? S_MOVE : S_IDLE;
+    const shoot = st === S_IDLE && !!ARMS[arm].missile;
+    for (let n = 0; n < 150 && S.n < crowd; n++) man(bx + (n % 25) * 0.95 - 12, by + (team ? 1 : -1) * Math.floor(n / 25) * 1.1, team, arm, st, st === S_MOVE ? 1.3 : 0, team ? -Math.PI / 2 : Math.PI / 2, { unit: JOBU[n % JOBU.length], shoot, rank: Math.floor(n / 25) });
+  }
+}
+const figures = makeFigures(scene, map, { cap: 8192, base: "../", lod1At: +(P.get("lod1") ?? 90) });
+const at = new THREE.Vector3(...(P.get("at") || (crowd ? "0,1,0" : "0,1,-1")).split(",").map(Number)).add(new THREE.Vector3(ORIGIN, 0, -ORIGIN));
+const camPos = new THREE.Vector3(...(P.get("cam") || (crowd ? "0,60,160" : "14,6,26")).split(",").map(Number)).add(new THREE.Vector3(ORIGIN, 0, -ORIGIN));
+let last = performance.now(), t = 0;
+const sel = new Set(P.has("sel") ? [1] : []);
+function frame(now) {
+  const dt = Math.min(0.1, (now - last) / 1000); last = now; t += dt; w.time = t;
+  if (drive) drive(dt);
+  for (const i of shooters) if (t >= S.nextShot[i]) S.nextShot[i] = t + (ARMS[Object.keys(ARMS)[S.arm[i]]].missile === "crossbow" ? 7 : 4) * (0.8 + 0.4 * Math.random());
+  const W = innerWidth, H = innerHeight; renderer.setSize(W, H, false); cam.aspect = W / H; cam.updateProjectionMatrix();
+  const ang = P.has("auto") ? t * 0.2 : +(P.get("rot") || 0), rel = camPos.clone().sub(at);
+  cam.position.copy(at).add(rel.applyAxisAngle(new THREE.Vector3(0, 1, 0), ang)); cam.lookAt(at);
+  figures.update(w, cam, sel, null, dt, 0, now / 1000);
+  renderer.render(scene, cam);
+  if (!P.has("bench")) document.querySelector("#info").textContent = JSON.stringify(figures.stats());
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+if (P.has("bench")) setTimeout(async () => {
+  const gl = renderer.getContext(), iv = [], rt = []; const r0 = renderer.render.bind(renderer);
+  renderer.render = (s, c) => { const a = performance.now(); r0(s, c); gl.finish(); rt.push(performance.now() - a); };
+  const t0 = performance.now(); let lt = t0;
+  await new Promise((res) => (function tick(tt) { iv.push(tt - lt); lt = tt; if (tt - t0 < 5000) requestAnimationFrame(tick); else res(); })(t0));
+  const avg = (a) => a.reduce((x, y) => x + y, 0) / a.length, p95 = (a) => [...a].sort((x, y) => x - y)[Math.floor(a.length * 0.95)];
+  document.title = "BENCH " + JSON.stringify({ fps: +(1000 / avg(iv.slice(2))).toFixed(1), renderMs: +avg(rt).toFixed(2), p95: +p95(rt).toFixed(2), men: S.n, ...figures.stats(), tris: renderer.info.render.triangles, calls: renderer.info.render.calls, dpr: renderer.getPixelRatio() });
+}, +(P.get("warm") || 4000));
+window.FV = { figures, S, w, renderer, scene };
+</script>
+</body>
+</html>

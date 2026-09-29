@@ -1,0 +1,188 @@
+{
+  "asset": "springald",
+  "glb": "assets/glb/springald.glb",
+  "units": "metres",
+  "ground": "z=0 (blender) / y=0 (glTF)",
+  "front": "-Y blender / +Z glTF",
+  "body_meshes": [
+    "body_LOD0",
+    "body_LOD1"
+  ],
+  "states": {
+    "complete": "assets/glb/springald.glb",
+    "burnt": "assets/glb/springald_burnt.glb"
+  },
+  "static_states": "every non-complete state is a single static body (no part nodes)",
+  "lod0_tris": {
+    "body": 1902,
+    "body_LOD1": 1450,
+    "wheel_fl": 540,
+    "wheel_fr": 540,
+    "wheel_rl": 540,
+    "wheel_rr": 540,
+    "bow_l": 104,
+    "bow_r": 104,
+    "bolt": 88
+  },
+  "parts": {
+    "wheel_fl": {
+      "parent": null,
+      "axis": "X",
+      "rest": "any (rolls)",
+      "node": "wheel_fl",
+      "pivot_blender": [
+        0.78,
+        -0.95,
+        0.3
+      ],
+      "pivot_gltf": [
+        0.78,
+        0.3,
+        0.95
+      ],
+      "local_offset_gltf": [
+        0.78,
+        0.3,
+        0.95
+      ]
+    },
+    "wheel_fr": {
+      "parent": null,
+      "axis": "X",
+      "rest": "any (rolls)",
+      "node": "wheel_fr",
+      "pivot_blender": [
+        -0.78,
+        -0.95,
+        0.3
+      ],
+      "pivot_gltf": [
+        -0.78,
+        0.3,
+        0.95
+      ],
+      "local_offset_gltf": [
+        -0.78,
+        0.3,
+        0.95
+      ]
+    },
+    "wheel_rl": {
+      "parent": null,
+      "axis": "X",
+      "rest": "any (rolls)",
+      "node": "wheel_rl",
+      "pivot_blender": [
+        0.78,
+        0.95,
+        0.3
+      ],
+      "pivot_gltf": [
+        0.78,
+        0.3,
+        -0.95
+      ],
+      "local_offset_gltf": [
+        0.78,
+        0.3,
+        -0.95
+      ]
+    },
+    "wheel_rr": {
+      "parent": null,
+      "axis": "X",
+      "rest": "any (rolls)",
+      "node": "wheel_rr",
+      "pivot_blender": [
+        -0.78,
+        0.95,
+        0.3
+      ],
+      "pivot_gltf": [
+        -0.78,
+        0.3,
+        -0.95
+      ],
+      "local_offset_gltf": [
+        -0.78,
+        0.3,
+        -0.95
+      ]
+    },
+    "bow_l": {
+      "parent": null,
+      "axis": "Z",
+      "rest": "drawn back",
+      "range_deg": [
+        0,
+        55
+      ],
+      "notes": "+deg about Z swings the arm forward/inward at the loose",
+      "node": "bow_l",
+      "pivot_blender": [
+        0.46,
+        -0.6,
+        1.08
+      ],
+      "pivot_gltf": [
+        0.46,
+        1.08,
+        0.6
+      ],
+      "local_offset_gltf": [
+        0.46,
+        1.08,
+        0.6
+      ]
+    },
+    "bow_r": {
+      "parent": null,
+      "axis": "Z",
+      "rest": "drawn back",
+      "range_deg": [
+        -55,
+        0
+      ],
+      "notes": "-deg about Z swings the arm forward/inward at the loose",
+      "node": "bow_r",
+      "pivot_blender": [
+        -0.46,
+        -0.6,
+        1.08
+      ],
+      "pivot_gltf": [
+        -0.46,
+        1.08,
+        0.6
+      ],
+      "local_offset_gltf": [
+        -0.46,
+        1.08,
+        0.6
+      ]
+    },
+    "bolt": {
+      "parent": null,
+      "axis": "X",
+      "rest": "nocked in the groove, point -Y",
+      "notes": "hide for 1.5 s after a shot; its point is 0.9 m ahead of the pivot",
+      "node": "bolt",
+      "pivot_blender": [
+        0.0,
+        0.62,
+        1.15
+      ],
+      "pivot_gltf": [
+        0.0,
+        1.15,
+        -0.62
+      ],
+      "local_offset_gltf": [
+        0.0,
+        1.15,
+        -0.62
+      ]
+    }
+  },
+  "wheel_naming": "f = -Y end, r = +Y end, l = +X side, r = -X side (the engine's own left/right facing -Y)"
+}

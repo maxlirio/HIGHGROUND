@@ -1,0 +1,140 @@
+{
+  "asset": "siege_tower",
+  "glb": "assets/glb/siege_tower.glb",
+  "units": "metres",
+  "ground": "z=0 (blender) / y=0 (glTF)",
+  "front": "-Y blender / +Z glTF",
+  "body_meshes": [
+    "body_LOD0",
+    "body_LOD1"
+  ],
+  "states": {
+    "complete": "assets/glb/siege_tower.glb",
+    "burnt": "assets/glb/siege_tower_burnt.glb"
+  },
+  "static_states": "every non-complete state is a single static body (no part nodes)",
+  "lod0_tris": {
+    "body": 5848,
+    "body_LOD1": 1450,
+    "wheel_fl": 544,
+    "wheel_fr": 544,
+    "wheel_rl": 544,
+    "wheel_rr": 544,
+    "bridge": 504
+  },
+  "parts": {
+    "wheel_fl": {
+      "parent": null,
+      "axis": "X",
+      "rest": "any (rolls)",
+      "node": "wheel_fl",
+      "pivot_blender": [
+        1.9,
+        -1.75,
+        0.62
+      ],
+      "pivot_gltf": [
+        1.9,
+        0.62,
+        1.75
+      ],
+      "local_offset_gltf": [
+        1.9,
+        0.62,
+        1.75
+      ]
+    },
+    "wheel_fr": {
+      "parent": null,
+      "axis": "X",
+      "rest": "any (rolls)",
+      "node": "wheel_fr",
+      "pivot_blender": [
+        -1.9,
+        -1.75,
+        0.62
+      ],
+      "pivot_gltf": [
+        -1.9,
+        0.62,
+        1.75
+      ],
+      "local_offset_gltf": [
+        -1.9,
+        0.62,
+        1.75
+      ]
+    },
+    "wheel_rl": {
+      "parent": null,
+      "axis": "X",
+      "rest": "any (rolls)",
+      "node": "wheel_rl",
+      "pivot_blender": [
+        1.9,
+        1.75,
+        0.62
+      ],
+      "pivot_gltf": [
+        1.9,
+        0.62,
+        -1.75
+      ],
+      "local_offset_gltf": [
+        1.9,
+        0.62,
+        -1.75
+      ]
+    },
+    "wheel_rr": {
+      "parent": null,
+      "axis": "X",
+      "rest": "any (rolls)",
+      "node": "wheel_rr",
+      "pivot_blender": [
+        -1.9,
+        1.75,
+        0.62
+      ],
+      "pivot_gltf": [
+        -1.9,
+        0.62,
+        -1.75
+      ],
+      "local_offset_gltf": [
+        -1.9,
+        0.62,
+        -1.75
+      ]
+    },
+    "bridge": {
+      "parent": null,
+      "axis": "X",
+      "rest": "closed: standing vertical against the front",
+      "range_deg": [
+        0,
+        90
+      ],
+      "notes": "+90 about X lowers it forward (-Y) to lie level on the wall-walk; hinge at z = 7.5",
+      "node": "bridge",
+      "pivot_blender": [
+        0.0,
+        -2.3233,
+        7.5
+      ],
+      "pivot_gltf": [
+        0.0,
+        7.5,
+        2.3233
+      ],
+      "local_offset_gltf": [
+        0.0,
+        7.5,
+        2.3233
+      ]
+    }
+  },
+  "bridge_hinge_z": 7.5,
+  "bridge_length": 3.2,
+  "wheel_naming": "f = -Y end, l = +X side"
+}

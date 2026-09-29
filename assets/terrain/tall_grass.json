@@ -1,0 +1,30 @@
+{
+  "name": "tall_grass",
+  "tile_m": 12.0,
+  "res": 1024,
+  "avg_srgb": "#6d6e3c",
+  "avg_linear": [
+    0.1536,
+    0.1555,
+    0.0445
+  ],
+  "height_range_m": 0.9417,
+  "height_min_m": -0.0405,
+  "rough_mean": 0.856,
+  "normal_boost": 0.35,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.08,
+    "height": 1.042,
+    "rough": 1.027
+  },
+  "notes": "Tall rank grass 40-80 cm, wind-laid swathes, seed heads; strong self-shadowing.",
+  "displace_m": 0.0,
+  "aliases": [
+    "long_grass",
+    "rough_grass",
+    "grass_tall"
+  ],
+  "macro_hint": "tile holds <=3 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "A-vegetated"
+}

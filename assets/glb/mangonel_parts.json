@@ -1,0 +1,96 @@
+{
+  "asset": "mangonel",
+  "glb": "assets/glb/mangonel.glb",
+  "units": "metres",
+  "ground": "z=0 (blender) / y=0 (glTF)",
+  "front": "-Y blender / +Z glTF",
+  "body_meshes": [
+    "body_LOD0",
+    "body_LOD1"
+  ],
+  "states": {
+    "complete": "assets/glb/mangonel.glb",
+    "burnt": "assets/glb/mangonel_burnt.glb"
+  },
+  "static_states": "every non-complete state is a single static body (no part nodes)",
+  "lod0_tris": {
+    "body": 3344,
+    "body_LOD1": 1449,
+    "arm": 658,
+    "ropes": 528,
+    "sling": 160
+  },
+  "parts": {
+    "arm": {
+      "parent": null,
+      "axis": "X",
+      "rest": "cocked: long end down to the rear (+Y) on its crutch",
+      "range_deg": [
+        0,
+        115
+      ],
+      "notes": "positive = crew haul the short end down, long end whips up and over to -Y; release ~ +100..+115",
+      "node": "arm",
+      "pivot_blender": [
+        0.0,
+        -0.15,
+        3.5
+      ],
+      "pivot_gltf": [
+        0.0,
+        3.5,
+        0.15
+      ],
+      "local_offset_gltf": [
+        0.0,
+        3.5,
+        0.15
+      ]
+    },
+    "ropes": {
+      "parent": "arm",
+      "axis": "X",
+      "rest": "hanging plumb from the rope hub",
+      "notes": "optional: keep plumb with local rotation.x = -(arm angle); ignored = they swing with the arm",
+      "node": "ropes",
+      "pivot_blender": [
+        0.0,
+        -1.1254,
+        4.1462
+      ],
+      "pivot_gltf": [
+        0.0,
+        4.1462,
+        1.1254
+      ],
+      "local_offset_gltf": [
+        0.0,
+        0.6462,
+        0.9754
+      ]
+    },
+    "sling": {
+      "parent": "arm",
+      "axis": "X",
+      "rest": "lying on the ground behind the engine",
+      "node": "sling",
+      "pivot_blender": [
+        0.0,
+        4.7101,
+        0.28
+      ],
+      "pivot_gltf": [
+        0.0,
+        0.28,
+        -4.7101
+      ],
+      "local_offset_gltf": [
+        0.0,
+        -3.22,
+        -4.8601
+      ]
+    }
+  },
+  "pose_cocked_deg": 0,
+  "pose_release_deg": 110
+}

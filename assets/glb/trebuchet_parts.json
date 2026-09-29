@@ -1,0 +1,101 @@
+{
+  "asset": "trebuchet",
+  "glb": "assets/glb/trebuchet.glb",
+  "units": "metres",
+  "ground": "z=0 (blender) / y=0 (glTF)",
+  "front": "-Y blender / +Z glTF",
+  "body_meshes": [
+    "body_LOD0",
+    "body_LOD1"
+  ],
+  "states": {
+    "complete": "assets/glb/trebuchet.glb",
+    "assembling_1": "assets/glb/trebuchet_assembling_1.glb",
+    "assembling_2": "assets/glb/trebuchet_assembling_2.glb",
+    "packed": "assets/glb/trebuchet_packed.glb",
+    "burnt": "assets/glb/trebuchet_burnt.glb"
+  },
+  "static_states": "every non-complete state is a single static body (no part nodes)",
+  "lod0_tris": {
+    "body": 4244,
+    "body_LOD1": 1450,
+    "arm": 714,
+    "counterweight": 1390,
+    "sling": 232
+  },
+  "parts": {
+    "arm": {
+      "parent": null,
+      "axis": "X",
+      "rest": "cocked: long end down to the rear (+Y), 35 deg below level",
+      "range_deg": [
+        0,
+        150
+      ],
+      "notes": "positive = long end rises and throws forward (-Y); release ~ +140..+150; the axle turns with it",
+      "node": "arm",
+      "pivot_blender": [
+        0.0,
+        0.0,
+        6.5
+      ],
+      "pivot_gltf": [
+        0.0,
+        6.5,
+        -0.0
+      ],
+      "local_offset_gltf": [
+        0.0,
+        6.5,
+        -0.0
+      ]
+    },
+    "counterweight": {
+      "parent": "arm",
+      "axis": "X",
+      "rest": "hanging plumb",
+      "notes": "child of arm; keep plumb: local rotation.x = -(arm angle) (a few deg of overswing looks right)",
+      "node": "counterweight",
+      "pivot_blender": [
+        0.0,
+        -1.966,
+        7.8766
+      ],
+      "pivot_gltf": [
+        0.0,
+        7.8766,
+        1.966
+      ],
+      "local_offset_gltf": [
+        0.0,
+        1.3766,
+        1.966
+      ]
+    },
+    "sling": {
+      "parent": "arm",
+      "axis": "X",
+      "rest": "laid forward along the trough, shot in the pouch",
+      "notes": "child of arm; hide it during the throw (contract) or whip it ~+180 relative to the arm",
+      "node": "sling",
+      "pivot_blender": [
+        0.0,
+        7.8639,
+        0.9937
+      ],
+      "pivot_gltf": [
+        0.0,
+        0.9937,
+        -7.8639
+      ],
+      "local_offset_gltf": [
+        0.0,
+        -5.5063,
+        -7.8639
+      ]
+    }
+  },
+  "pose_cocked_deg": 0,
+  "pose_release_deg": 145,
+  "counterweight_rule": "counterweight.rotation.x = -arm.rotation.x (plumb)"
+}

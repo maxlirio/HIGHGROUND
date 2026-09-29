@@ -1,0 +1,28 @@
+{
+  "name": "barley_field",
+  "tile_m": 10.0,
+  "res": 1024,
+  "avg_srgb": "#bdad74",
+  "avg_linear": [
+    0.506,
+    0.4184,
+    0.1738
+  ],
+  "height_range_m": 1.0794,
+  "height_min_m": -0.0449,
+  "rough_mean": 0.765,
+  "normal_boost": 0.5,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 0.967,
+    "height": 0.853,
+    "rough": 0.937
+  },
+  "notes": "Ripe barley: paler silky ears with long awns, nodding, stronger wind combing.",
+  "displace_m": 0.0,
+  "aliases": [
+    "barley"
+  ],
+  "macro_hint": "tile holds <=3 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "A-vegetated"
+}

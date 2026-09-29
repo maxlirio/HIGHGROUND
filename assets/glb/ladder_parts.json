@@ -1,0 +1,21 @@
+{
+  "asset": "ladder",
+  "glb": "assets/glb/ladder.glb",
+  "units": "metres",
+  "ground": "z=0 (blender) / y=0 (glTF)",
+  "front": "-Y blender / +Z glTF",
+  "body_meshes": [
+    "body_LOD0",
+    "body_LOD1"
+  ],
+  "states": {
+    "complete": "assets/glb/ladder.glb"
+  },
+  "static_states": "every non-complete state is a single static body (no part nodes)",
+  "lod0_tris": {
+    "body": 1328,
+    "body_LOD1": 600
+  },
+  "parts": {},
+  "orientation": "standing along +Z: foot at the origin, top at z = 7"
+}

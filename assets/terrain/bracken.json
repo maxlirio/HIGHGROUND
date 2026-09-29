@@ -1,0 +1,29 @@
+{
+  "name": "bracken",
+  "tile_m": 10.0,
+  "res": 1024,
+  "avg_srgb": "#4e5026",
+  "avg_linear": [
+    0.0767,
+    0.0804,
+    0.0196
+  ],
+  "height_range_m": 1.2481,
+  "height_min_m": -0.0473,
+  "rough_mean": 0.709,
+  "normal_boost": 0.35,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 0.982,
+    "height": 0.846,
+    "rough": 1.05
+  },
+  "notes": "Bracken stand in summer: overlapping pinnate fronds, a few browning, dark litter below.",
+  "displace_m": 0.0,
+  "aliases": [
+    "fern",
+    "ferns"
+  ],
+  "macro_hint": "tile holds <=3 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "A-vegetated"
+}

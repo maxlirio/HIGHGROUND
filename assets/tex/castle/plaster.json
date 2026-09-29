@@ -1,0 +1,10 @@
+{
+ "name": "plaster",
+ "tile_m": 4.0,
+ "res": 1024,
+ "avg_srgb": "#c8bea7",
+ "rough_mean": 0.9,
+ "relief_m": 0.0178,
+ "seam": 1.052,
+ "notes": "lime plaster/limewash"
+}

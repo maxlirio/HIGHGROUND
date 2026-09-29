@@ -1,0 +1,28 @@
+{
+  "name": "stubble_field",
+  "tile_m": 12.0,
+  "res": 1024,
+  "avg_srgb": "#7f714a",
+  "avg_linear": [
+    0.2117,
+    0.1659,
+    0.0676
+  ],
+  "height_range_m": 0.297,
+  "height_min_m": -0.0468,
+  "rough_mean": 0.809,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.036,
+    "height": 0.936,
+    "rough": 0.923
+  },
+  "notes": "Sickle-cut stubble: pale straw stalks, fallen straw, soil between, green weed regrowth.",
+  "displace_m": 0.0,
+  "aliases": [
+    "stubble"
+  ],
+  "macro_hint": "tile holds <=3 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "A-vegetated"
+}

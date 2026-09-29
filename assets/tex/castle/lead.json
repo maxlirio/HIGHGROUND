@@ -1,0 +1,10 @@
+{
+ "name": "lead",
+ "tile_m": 4.0,
+ "res": 1024,
+ "avg_srgb": "#737877",
+ "rough_mean": 0.58,
+ "relief_m": 0.044,
+ "seam": 80.563,
+ "notes": "lead sheet with rolls along V"
+}

@@ -1,0 +1,10 @@
+{
+ "name": "rubble",
+ "tile_m": 6.0,
+ "res": 2048,
+ "avg_srgb": "#a29884",
+ "rough_mean": 0.884,
+ "relief_m": 0.0603,
+ "seam": 1.455,
+ "notes": "coursed rubble, thick lime mortar"
+}

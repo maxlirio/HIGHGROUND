@@ -1,0 +1,179 @@
+{
+  "asset": "ram",
+  "glb": "assets/glb/ram.glb",
+  "units": "metres",
+  "ground": "z=0 (blender) / y=0 (glTF)",
+  "front": "-Y blender / +Z glTF",
+  "body_meshes": [
+    "body_LOD0",
+    "body_LOD1"
+  ],
+  "states": {
+    "complete": "assets/glb/ram.glb",
+    "burnt": "assets/glb/ram_burnt.glb"
+  },
+  "static_states": "every non-complete state is a single static body (no part nodes)",
+  "lod0_tris": {
+    "body": 4172,
+    "body_LOD1": 1450,
+    "wheel_lf": 144,
+    "wheel_lm": 144,
+    "wheel_lb": 144,
+    "wheel_rf": 144,
+    "wheel_rm": 144,
+    "wheel_rb": 144,
+    "ram": 1012
+  },
+  "parts": {
+    "wheel_lf": {
+      "parent": null,
+      "axis": "X",
+      "rest": "any (rolls)",
+      "node": "wheel_lf",
+      "pivot_blender": [
+        0.95,
+        -2.6,
+        0.45
+      ],
+      "pivot_gltf": [
+        0.95,
+        0.45,
+        2.6
+      ],
+      "local_offset_gltf": [
+        0.95,
+        0.45,
+        2.6
+      ]
+    },
+    "wheel_lm": {
+      "parent": null,
+      "axis": "X",
+      "rest": "any (rolls)",
+      "node": "wheel_lm",
+      "pivot_blender": [
+        0.95,
+        0.0,
+        0.45
+      ],
+      "pivot_gltf": [
+        0.95,
+        0.45,
+        -0.0
+      ],
+      "local_offset_gltf": [
+        0.95,
+        0.45,
+        -0.0
+      ]
+    },
+    "wheel_lb": {
+      "parent": null,
+      "axis": "X",
+      "rest": "any (rolls)",
+      "node": "wheel_lb",
+      "pivot_blender": [
+        0.95,
+        2.6,
+        0.45
+      ],
+      "pivot_gltf": [
+        0.95,
+        0.45,
+        -2.6
+      ],
+      "local_offset_gltf": [
+        0.95,
+        0.45,
+        -2.6
+      ]
+    },
+    "wheel_rf": {
+      "parent": null,
+      "axis": "X",
+      "rest": "any (rolls)",
+      "node": "wheel_rf",
+      "pivot_blender": [
+        -0.95,
+        -2.6,
+        0.45
+      ],
+      "pivot_gltf": [
+        -0.95,
+        0.45,
+        2.6
+      ],
+      "local_offset_gltf": [
+        -0.95,
+        0.45,
+        2.6
+      ]
+    },
+    "wheel_rm": {
+      "parent": null,
+      "axis": "X",
+      "rest": "any (rolls)",
+      "node": "wheel_rm",
+      "pivot_blender": [
+        -0.95,
+        0.0,
+        0.45
+      ],
+      "pivot_gltf": [
+        -0.95,
+        0.45,
+        -0.0
+      ],
+      "local_offset_gltf": [
+        -0.95,
+        0.45,
+        -0.0
+      ]
+    },
+    "wheel_rb": {
+      "parent": null,
+      "axis": "X",
+      "rest": "any (rolls)",
+      "node": "wheel_rb",
+      "pivot_blender": [
+        -0.95,
+        2.6,
+        0.45
+      ],
+      "pivot_gltf": [
+        -0.95,
+        0.45,
+        -2.6
+      ],
+      "local_offset_gltf": [
+        -0.95,
+        0.45,
+        -2.6
+      ]
+    },
+    "ram": {
+      "parent": null,
+      "axis": "X",
+      "rest": "hanging level, iron head at -Y",
+      "notes": "translate along Y within +-0.8 m (the swing) with a few deg of X rotation; chains included",
+      "node": "ram",
+      "pivot_blender": [
+        0.0,
+        -0.75,
+        1.2
+      ],
+      "pivot_gltf": [
+        0.0,
+        1.2,
+        0.75
+      ],
+      "local_offset_gltf": [
+        0.0,
+        1.2,
+        0.75
+      ]
+    }
+  },
+  "swing": "translate the 'ram' node along Y by up to +-0.8 m (head toward -Y strikes)",
+  "wheel_naming": "wheel_{l,r}{f,m,b}: l = +X, f = -Y end"
+}

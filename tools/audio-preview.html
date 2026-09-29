@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HIGHGROUND · Sound Preview</title>
+<style>
+:root { --bg: #16140f; --panel: #221f18; --ink: #ece3cf; --dim: #9d9480; --gold: #c9a24a; --line: #3a3427; }
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) { --bg: #f4efe3; --panel: #fffaf0; --ink: #2a241a; --dim: #6e6552; --gold: #8a6a1c; --line: #d9cfb8; } }
+* { box-sizing: border-box; }
+body { margin: 0; font: 14px/1.4 system-ui, sans-serif; background: var(--bg); color: var(--ink); padding: 16px; }
+h1 { font: 600 20px/1.2 Georgia, serif; letter-spacing: .08em; margin: 0 0 4px; }
+p.sub { color: var(--dim); margin: 0 0 16px; max-width: 70ch; }
+.bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 16px; }
+button { background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-radius: 4px; padding: 4px 10px; cursor: pointer; font: inherit; }
+button:hover { border-color: var(--gold); } button.big { padding: 8px 16px; font-weight: 600; border-color: var(--gold); }
+select, input { font: inherit; }
+section { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px; margin-bottom: 10px; }
+section h2 { font: 600 13px/1 system-ui; letter-spacing: .15em; text-transform: uppercase; color: var(--dim); margin: 0 0 8px; }
+.row { display: flex; flex-wrap: wrap; gap: 6px 14px; }
+.snd { display: flex; align-items: center; gap: 4px; }
+.snd b { font-weight: 500; min-width: 9ch; }
+.snd button { padding: 1px 6px; font-size: 12px; }
+#log { color: var(--dim); font-size: 12px; white-space: pre-wrap; }
+#timeline { color: var(--gold); font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+<h1>HIGHGROUND · Sound Preview</h1>
+<p class="sub">Every sound in the bank (all synthesized by <code>tools/audio/render.py</code>), played through the game's own engine at a chosen distance, and a scripted 60-second battle mix that exercises the density beds, the voice pool and the distance model.</p>
+<div class="bar">
+  <button class="big" id="mix">▶ 60-s battle mix</button>
+  <button id="mixEagle">▶ same, heard from the eagle view</button>
+  <button id="stop">■ stop</button>
+  <label>distance <select id="dist"><option value="4">4 m</option><option value="15" selected>15 m</option><option value="60">60 m</option><option value="200">200 m</option><option value="600">600 m</option></select></label>
+  <span id="timeline"></span>
+</div>
+<div id="groups"></div>
+<div id="log">loading…</div>
+<script type="module">
+import { AudioEngine } from "../js/audio/engine.js";
+
+const GROUPS = [
+  ["Close combat", /^(clash|shield|bash|plate|mail|body|shaft)$/],
+  ["Voices", /^(grunt|cry|groan|shout|warcry_|rout_cry)/],
+  ["Missiles", /^(bow|xbow|windlass|whoosh|arr_|volley|xvolley)/],
+  ["Horses", /^(whinny|snort|horse_scream|cav_impact)$/],
+  ["Siege & destruction", /^(trebuchet|mangonel|springald|stone_|wall_collapse|splinter|ram|gate_break|tower_dock|ladder|collapse|ignite|creak)/],
+  ["Castles (walls, gates, mines, hoardings, the camp)", /^(masonry_crack|tower_collapse|leaves_break|portcullis_|mine_|drop_|hammer|assault_trumpets)/],
+  ["Signals", /^horn/],
+  ["Cues (optional music)", /^cue_/],
+  ["Ambience", /^(skylark|blackbird|chaffinch|cuckoo|crow|anvil|axe|dog|bell|cow|sheep)$/],
+  ["The lord (player avatar)", /^(lord_|swing|couch|crunch)/],
+  ["Beds (looped density layers)", /^bed_/],
+  ["Reverb", /^ir_/],
+];
+const $ = (s) => document.querySelector(s);
+const log = (t) => { $("#log").textContent = t; };
+
+// ---------------------------------------------------------------- the scripted battle (engine API only)
+// Ear at the origin facing north (-z); x = east. Levels are the same units battle.js uses (√(men / Nref)).
+function scenario(eng, { eagle = false } = {}) {
+  const H = eagle ? 115 : 0; // the eagle view's ear sits ~140 m from the field along the view line (battle.js updateEar)
+  const R = Math.random; let seed = 7; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+  const ev = []; const at = (t, fn) => ev.push([t, fn]);
+  const P = (x, z, y = 1.5) => [x, y, z];
+  const one = (name, x, z, y, o) => eng.play(name, ...P(x, z, y), o);
+  const lerp = (a, b, u) => a + (b - a) * Math.min(1, Math.max(0, u));
+  eng.setEar(0, H + 1.7, 0, 0, eagle ? -0.8 : 0, eagle ? -0.6 : -1, 0, eagle ? 0.6 : 1, eagle ? -0.8 : 0);
+  const beds = ["bed_surge", "bed_grind", "bed_roar", "bed_arrows", "bed_march", "bed_gallop", "bed_rout", "bed_after", "bed_fire"];
+  for (const b of beds) eng.layer(b, 3);
+  const wind = eng.bed("bed_wind", "amb");
+  // --- approach: horns in bouts from the far host, answered from ours
+  at(1.5, () => one("horns_massed", -40, -420, 3)); at(7.5, () => one("horns_massed", 30, 180, 3));
+  at(12.5, () => one("horns_massed", 10, -360, 3, { gain: 3 }));
+  at(8.5, () => one("horn_advance_blue", 20, 70, 3));
+  for (let t = 0.5; t < 9; t += 1.7) at(t, () => one(["skylark", "blackbird", "chaffinch"][(rnd() * 3) | 0], (rnd() - .5) * 120, (rnd() - .5) * 120, 8, { bus: "amb" }));
+  // --- volleys: ours going out, theirs coming in
+  for (const t of [10, 13.2, 16.5]) at(t, () => one("volley", 55, 15, 1.5));
+  for (const t of [12, 17]) at(t, () => one("xvolley", -30, -170, 1.5));
+  for (let k = 0; k < 40; k++) { const t = 12.8 + rnd() * 8; at(t, () => { const x = (rnd() - .5) * 50, z = -rnd() * 40 + 5; one(["arr_ground", "arr_ground", "arr_shield", "arr_armour"][(rnd() * 4) | 0], x, z, 0.8); if (rnd() < .3) one("whoosh", x, z + 4, 2.5); }); }
+  // --- cavalry: horn, gallop across, the cry, the crash
+  at(18, () => one("horn_charge_blue", 20, 70, 3)); at(22.5, () => one("warcry_blue", 60, -90, 1.7));
+  at(25, () => one("cav_impact", 10, -120, 1.4)); at(25.6, () => one("horse_scream", 16, -118, 1.8)); at(26.2, () => one("whinny", -8, -125, 1.8));
+  // --- mêlée: the surge, then the grind; single blows near the ear
+  let meleeAcc = 0;
+  const kills = [27, 29.5, 31, 33.8, 36, 38.5, 41, 43];
+  for (const t of kills) at(t, () => { const x = (rnd() - .5) * 30, z = -12 - rnd() * 25; one("body", x, z, 1.2); one(t < 33 ? "cry" : "groan", x, z, 1.2, { delay: 0.06 }); });
+  at(24.5, () => one("warcry_red", -10, -60, 1.7));
+  // --- engines
+  at(28, () => one("trebuchet", 220, 110, 2)); at(31.2, () => one("stone_ground", -70, -300, 1));
+  at(36, () => one("trebuchet", 215, 105, 2)); at(39.5, () => one("stone_wall", -110, -330, 1));
+  at(42.5, () => one("wall_collapse", -115, -335, 3));
+  at(33, () => one("mangonel", -160, -260, 2));
+  // --- rout, rally, victory, and the noise stopping
+  at(44, () => one("rout_cry", 0, -80, 1.6)); at(45.5, () => one("horn_retire_red", -20, -420, 3));
+  at(49.5, () => one("warcry_blue", 0, -35, 1.7)); at(52, () => one("horn_rally_blue", 20, 70, 3));
+  at(50, () => eng.settings.cues > 0 && eng.play2d("cue_victory", "cue"));
+  for (const t of [54, 56.5, 58.5]) at(t, () => one("crow", (rnd() - .5) * 80, -40 - rnd() * 60, 10, { bus: "amb" }));
+  ev.sort((a, b) => a[0] - b[0]);
+  let i = 0, T = 0;
+  return function step(dt) {
+    T += dt;
+    while (i < ev.length && ev[i][0] <= T) ev[i++][1]();
+    const tg = (x, z, level, r = 20) => [{ x, y: 1.2, z, level, r }];
+    const surge = Math.exp(-Math.max(0, T - 24) / 9), fight = T > 24 && T < 47 ? 1.4 * Math.min(1, (T - 24) / 1.5) * (T > 44 ? (47 - T) / 3 : 1) : 0;
+    const far = eagle ? 0.9 : 0.1;
+    eng.drive("bed_march", T < 22 ? tg(lerp(-40, -10, T / 20), lerp(-20, -35, T / 20), 1.1 * Math.min(1, T / 2)) : [], dt);
+    eng.drive("bed_arrows", T > 11 && T < 22 ? tg(0, -150, 1.4).concat(T > 12.8 && T < 21 ? tg(0, -15, 0.9) : []) : [], dt);
+    eng.drive("bed_gallop", T > 18 && T < 27 ? tg(lerp(160, 15, (T - 18) / 7), lerp(-40, -118, (T - 18) / 7), 1.6) : [], dt);
+    eng.drive("bed_surge", fight ? tg(0, -40, fight * Math.sqrt(surge) * (1 - 0.6 * far), 30) : [], dt);
+    eng.drive("bed_grind", fight ? tg(0, -40, fight * Math.sqrt(1 - 0.85 * surge) * (1 - 0.6 * far), 30) : [], dt);
+    eng.drive("bed_roar", fight ? tg(0, -40, fight * (0.25 + 0.75 * far), 30) : [], dt);
+    eng.drive("bed_rout", T > 44 && T < 56 ? tg(0, lerp(-80, -260, (T - 44) / 12), 1.2) : [], dt);
+    eng.drive("bed_fire", T > 40 ? tg(-110, -330, 1.2, 6) : [], dt);
+    eng.drive("bed_after", T > 51 ? tg(0, -45, Math.min(1, (T - 51) / 3), 25) : [], dt);
+    if (wind) { wind.gain.gain.setTargetAtTime(0.2 * (eagle ? 1.2 : 0.5), eng.ctx.currentTime, 0.5); wind.lp.frequency.value = eagle ? 10000 : 2500; }
+    if (!eagle && fight) { // single blows near the ear, ~ 0.12/s per man within earshot
+      meleeAcc += dt * 9 * fight;
+      while (meleeAcc >= 1) { meleeAcc -= 1; const x = (rnd() - .5) * 40, z = -8 - rnd() * 30;
+        one(["clash", "clash", "shield", "shield", "bash", "shaft", "body", "plate", "mail"][(rnd() * 9) | 0], x, z, 1.3);
+        if (rnd() < 0.2) one("grunt", x, z, 1.6, { delay: 0.08 }); }
+    }
+    return T;
+  };
+}
+
+// ---------------------------------------------------------------- realtime preview
+let eng = null, running = null;
+async function boot() {
+  eng = new AudioEngine({ base: "../assets/audio/", settings: { master: 0.9, sfx: 1, amb: 0.8, cues: 0.8, muted: false } });
+  const t0 = performance.now();
+  await eng.load((p) => log(`decoding… ${Math.round(p * 100)} %`));
+  const man = eng.manifest.sounds, names = Object.keys(man);
+  log(`${names.length} sounds, ${names.reduce((s, n) => s + man[n].files.length, 0)} files decoded in ${Math.round(performance.now() - t0)} ms`);
+  const box = $("#groups");
+  for (const [title, re] of GROUPS) {
+    const sec = document.createElement("section"); sec.innerHTML = `<h2>${title}</h2><div class="row"></div>`;
+    for (const n of names.filter((n) => re.test(n))) {
+      const d = document.createElement("span"); d.className = "snd"; d.innerHTML = `<b>${n}</b>`;
+      man[n].files.forEach((f, k) => {
+        const b = document.createElement("button"); b.textContent = man[n].files.length > 1 ? k + 1 : "▶"; b.title = `${f} · ${man[n].dur[k]} s`;
+        b.onclick = () => { eng.resume(); playOne(n, k); };
+        d.append(b);
+      });
+      sec.querySelector(".row").append(d);
+    }
+    box.append(sec);
+  }
+  window.PREVIEW_READY = true;
+}
+function playOne(name, k) {
+  const kind = eng.manifest.sounds[name].kind, D = +$("#dist").value;
+  const list = eng.buffers.get(name); eng.lastPick.set(name, -1);
+  const saved = list.slice(); eng.buffers.set(name, [list[k]]);
+  eng.setEar(0, 1.7, 0, 0, 0, -1, 0, 1, 0);
+  if (kind === "loop") { const L = eng.layer(name, 1); eng.drive(name, [{ x: 0, y: 1.2, z: -D, level: 1, r: 10 }], 0.1); setTimeout(() => eng.drive(name, [], 0.1), 6000); }
+  else if (kind === "cue") eng.play2d(name, "cue");
+  else if (kind === "ir") log("the vale impulse response (used by the reverb)");
+  else eng.play(name, 0, 1.5, -D, {});
+  eng.buffers.set(name, saved);
+}
+function runMix(eagle) {
+  eng.resume(); stopMix();
+  const step = scenario(eng, { eagle }); let last = performance.now();
+  running = setInterval(() => { const now = performance.now(); const T = step((now - last) / 1000); last = now; $("#timeline").textContent = `t = ${T.toFixed(1)} s`; if (T > 62) stopMix(); }, 50);
+}
+function stopMix() { if (running) clearInterval(running); running = null; for (const b of eng.emitters.keys()) eng.drive(b, [], 0.1); }
+$("#mix").onclick = () => runMix(false); $("#mixEagle").onclick = () => runMix(true); $("#stop").onclick = stopMix;
+
+// ---------------------------------------------------------------- offline render (tools/audio-render.mjs)
+// Renders the mix through the very same engine in an OfflineAudioContext, stepping the script every 50 ms of
+// audio time with ctx.suspend(); returns a 16-bit stereo WAV as base64 plus the engine's voice statistics.
+window.renderMix = async (seconds = 62, { eagle = false, cues = 0.8 } = {}) => {
+  const ctx = new OfflineAudioContext(2, Math.round(seconds * 48000), 48000);
+  const e = new AudioEngine({ ctx, base: "../assets/audio/", settings: { master: 0.9, sfx: 1, amb: 0.8, cues, muted: false } });
+  await e.load();
+  const step = scenario(e, { eagle }), dt = 0.05;
+  let maxVoices = 0;
+  for (let t = dt; t < seconds - dt; t += dt) ctx.suspend(Math.round(t * 48000 / 128) * 128 / 48000).then(() => { step(dt); maxVoices = Math.max(maxVoices, e.activeVoices()); ctx.resume(); });
+  step(0);
+  const buf = await ctx.startRendering();
+  const L = buf.getChannelData(0), R = buf.getChannelData(1), n = L.length;
+  const out = new DataView(new ArrayBuffer(44 + n * 4));
+  const w4 = (o, s) => [...s].forEach((c, i) => out.setUint8(o + i, c.charCodeAt(0)));
+  w4(0, "RIFF"); out.setUint32(4, 36 + n * 4, true); w4(8, "WAVEfmt "); out.setUint32(16, 16, true); out.setUint16(20, 1, true); out.setUint16(22, 2, true);
+  out.setUint32(24, 48000, true); out.setUint32(28, 48000 * 4, true); out.setUint16(32, 4, true); out.setUint16(34, 16, true); w4(36, "data"); out.setUint32(40, n * 4, true);
+  let clip = 0;
+  for (let i = 0; i < n; i++) { for (const [c, a] of [[0, L], [1, R]]) { let v = a[i]; if (Math.abs(v) > 1) clip++; v = Math.max(-1, Math.min(1, v)); out.setInt16(44 + i * 4 + c * 2, v * 32767, true); } }
+  const bytes = new Uint8Array(out.buffer); let bin = ""; for (let i = 0; i < bytes.length; i += 32768) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 32768));
+  window.__mix = btoa(bin); // fetched in slices by tools/audio-render.mjs (one 16 MB CDP message is too much)
+  return { size: window.__mix.length, stats: { ...e.stats, maxVoices, clippedSamples: clip } };
+};
+
+if (!new URLSearchParams(location.search).has("render")) boot().catch((e) => log("failed: " + e));
+else window.PREVIEW_READY = true;
+</script>
+</body>
+</html>

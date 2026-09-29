@@ -1,0 +1,27 @@
+{
+  "name": "scree",
+  "tile_m": 4.0,
+  "res": 1024,
+  "avg_srgb": "#6f6c65",
+  "avg_linear": [
+    0.1595,
+    0.1492,
+    0.131
+  ],
+  "height_range_m": 0.2341,
+  "height_min_m": -0.0837,
+  "rough_mean": 0.851,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.067,
+    "height": 1.038,
+    "rough": 1.119
+  },
+  "notes": "Scree: loose angular frost-shattered stones 3-35 cm, clast-supported, grey with rusty weathering rinds, fines only in the gaps. Horses and formed troops badly disordered.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "scree"
+  ]
+}

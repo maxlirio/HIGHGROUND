@@ -1,0 +1,64 @@
+/* The siege frame (?mode=siege): the setup screen, the siege panel (the clock, the orders, the castle), the days
+   passing, the herald, the reckoning. Same parchment-and-gold as style.css / battle.css. */
+
+/* ---------------------------------------------------------------- setup */
+.sg-tabs { grid-template-columns: repeat(3, 1fr); }
+.sg-body { grid-template-columns: 440px 1fr; }
+.sg-map { width: 440px; height: 440px; }
+.sg-plan { display: grid; grid-template-columns: 150px 1fr; gap: 12px; margin-top: 10px; align-items: start; }
+.sg-plan svg { width: 150px; height: 150px; background: #16130e; border: 1px solid #3a3122; border-radius: 4px; }
+.sg-plan .out, .sg-plan .in { fill: #5a5244; stroke: #d8c9a0; stroke-width: 3; } .sg-plan .in { fill: #6a6150; stroke-width: 4; }
+.sg-plan .tw { fill: #8a7f68; stroke: #e7dab8; stroke-width: 1.2; } .sg-plan .kp { fill: #9a8d70; stroke: #fff2cc; stroke-width: 1.5; }
+.sg-plan .gh { fill: #b08b4a; stroke: #ffe39a; stroke-width: 1.2; } .sg-plan .wt { fill: #4a7da8; opacity: .8; } .sg-plan .hl { fill: #4d5a33; opacity: .7; }
+.sg-plan .lb { fill: #d9cfb5; font: italic 9px Georgia, serif; text-anchor: middle; }
+.sg-about { font-size: 13px; line-height: 1.45; color: #d9cfb5; } .sg-about b { color: var(--gold); font-size: 15px; } .sg-about p { margin: 3px 0; }
+.sg-sides button { text-align: left; }
+.sg-two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; } .sg-two .bs-roster { grid-template-columns: 1fr; }
+.sg-train { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 12px; }
+.sg-custom .sp-row.sg-force { grid-template-columns: repeat(3, 1fr); } .sg-custom .sp-row.sg-season, .sg-custom .sp-row.sg-prov { grid-template-columns: repeat(4, 1fr); }
+.sg-custom .sp-row button small { display: block; font-size: 11px; color: var(--dim); margin-top: 2px; line-height: 1.2; }
+.sg-card b.warn { color: #f08a6a; }
+@media (max-width: 1100px) { .sg-body { grid-template-columns: 1fr; } .sg-map { width: min(440px, 100%); height: auto; aspect-ratio: 1; } }
+
+/* ---------------------------------------------------------------- the siege panel */
+#siegepanel { position: absolute; left: 12px; top: 46px; width: 360px; max-height: calc(100% - 200px); overflow: auto; background: var(--panel); border: 1px solid var(--edge);
+  border-radius: 4px; padding: 8px 10px; font-size: 13px; z-index: 3; }
+#siegepanel .lg-kicker { font-size: 11px; } .sgp-top { position: relative; } .sgp-fold { position: absolute; right: 0; top: -2px; font-size: 11px; padding: 0 6px; }
+#siegepanel.folded .sgp-d { display: none; } #siegepanel.folded { width: 300px; }
+.sg-track { display: flex; gap: 2px; margin: 5px 0 6px; } .sg-track span { flex: 1; font-size: 10px; text-align: center; padding: 3px 2px; background: #2a241a; color: var(--dim); border-radius: 2px; line-height: 1.15; }
+.sg-track span.past { color: #b9ab86; background: #3a3122; } .sg-track span.on { color: #1a160f; background: var(--gold); font-weight: 700; }
+.sgp-sec { margin: 6px 0 8px; } .sgp-h { font-size: 11px; color: var(--gold); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 4px; } .sgp-h small { color: var(--dim); letter-spacing: 0; text-transform: none; margin-left: 6px; font-size: 11px; }
+.sgp-row { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 4px; } .sgp-row button { font-size: 12px; padding: 3px 7px; } .sgp-row button small { color: var(--dim); font-size: 10px; } .sgp-row button:disabled { opacity: .38; cursor: default; }
+.sgp-warn { font-size: 12px; color: #f0b27a; font-style: italic; }
+.sgp-d > summary { cursor: pointer; font-size: 12px; color: var(--ink); letter-spacing: .08em; padding: 3px 0; border-top: 1px solid #3a3122; }
+.sgs-meta { display: flex; flex-wrap: wrap; gap: 2px 12px; font-size: 12px; color: #d9cfb5; margin-bottom: 5px; } .sgs-meta b { color: var(--ink); }
+.sgs-list { display: flex; flex-direction: column; gap: 2px; }
+.sgs-r { display: grid; grid-template-columns: 1fr auto auto auto auto; gap: 4px; align-items: center; font-size: 12px; padding: 1px 2px; border-radius: 2px; }
+.sgs-r.tgt { background: #5a3a2244; } .sgs-r .nm { cursor: pointer; color: #e2d8bd; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .sgs-r .nm:hover { color: var(--gold); }
+.sgs-r .md { display: flex; gap: 1px; } .sgs-r .md i { width: 7px; height: 11px; background: #8b8373; border-radius: 1px; display: block; }
+.sgs-r .md i.pk { background: #a58d5a; } .sgs-r .md i.cr { background: #b86a3a; } .sgs-r .md i.br { background: #d43a2a; box-shadow: 0 0 4px #ff4a2a; } .sgs-r .md i.bk { background: #6b4a26; outline: 1px solid #d8b25a; }
+.sgs-r button { font-size: 10px; padding: 0 4px; line-height: 16px; } .sgs-r .st { color: var(--dim); font-size: 11px; grid-column: span 3; text-align: right; }
+.sgs-r.gate, .sgs-r.mine { grid-template-columns: 1fr auto; } .sgs-r.mine { grid-template-columns: 1fr 60px auto; }
+.sgs-r .bar { height: 6px; background: #111; border-radius: 2px; overflow: hidden; } .sgs-r .bar i { display: block; height: 100%; background: var(--gold); }
+.sgs-sub { font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: var(--dim); margin: 6px 0 2px; }
+.sgs-eng { font-size: 12px; color: #d9cfb5; } .sgs-keep summary { cursor: pointer; font-size: 11px; color: var(--dim); margin-top: 4px; }
+b.warn, .warn { color: #f08a6a; }
+body.sgpick #view { cursor: crosshair !important; }
+
+/* ---------------------------------------------------------------- the days passing, the herald */
+#sgwait { position: absolute; top: 18%; left: 50%; transform: translateX(-50%); text-align: center; background: linear-gradient(#2a241ae8, #16130ee8); border: 1px solid var(--gold);
+  border-radius: 6px; padding: 10px 30px 12px; box-shadow: 0 8px 40px #000a; pointer-events: auto; z-index: 4; }
+#sgwait[hidden], #sgterms[hidden] { display: none; }
+#sgwait .sw-k { font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); } #sgwait .sw-d { font-size: 30px; font-variant-numeric: tabular-nums; margin: 2px 0; }
+#sgwait .sw-t { font-size: 13px; font-style: italic; color: var(--dim); margin-bottom: 6px; } #sgwait button { font-size: 12px; padding: 2px 12px; }
+#sgterms { position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); width: min(460px, calc(100% - 24px)); text-align: center; background: linear-gradient(#2a241af6, #16130ef6);
+  border: 1px solid var(--gold); border-radius: 6px; padding: 14px 24px 16px; box-shadow: 0 10px 60px #000; z-index: 6; animation: mc-in .5s ease-out; }
+#sgterms p { font-size: 15px; line-height: 1.4; margin: 6px 0; } #sgterms .sg-dim { font-size: 13px; color: var(--dim); font-style: italic; }
+#sgterms .be-b { display: flex; gap: 8px; justify-content: center; margin-top: 8px; } #sgterms button { font-size: 14px; padding: 4px 16px; }
+
+/* ---------------------------------------------------------------- the reckoning */
+.sg-reck .am-grid { grid-template-columns: 420px 1fr; } .sg-facts { list-style: none; padding: 0; margin: 0; font-size: 13px; color: #d9cfb5; line-height: 1.6; }
+.sg-tl { max-height: 420px; }
+@media (max-width: 1000px) { .sg-reck .am-grid { grid-template-columns: 1fr; } #siegepanel { width: 300px; } }
+/* the chronicle stays clear of the View panel above it (both on the right; the panel is ~500 px tall) */
+body.siege-mode #chron { max-height: max(120px, min(34vh, calc(100vh - 580px))); }

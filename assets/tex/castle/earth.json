@@ -1,0 +1,7 @@
+{
+ "name": "earth",
+ "tile_m": 4.0,
+ "res": 1024,
+ "avg_srgb": "#554331",
+ "notes": "copy of terrain set 'ditch'"
+}

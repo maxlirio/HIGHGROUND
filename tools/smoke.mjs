@@ -1,0 +1,12 @@
+import { placeholderMap } from "../js/sim/map.js";
+import { createWorld, addUnit, issueOrder, step } from "../js/sim/world.js";
+const map = placeholderMap();
+const w = createWorld({ map, seed: 7 });
+const u = addUnit(w, { team: 0, arm: "spearmen", count: 60, x: 800, y: 800 });
+const k = addUnit(w, { team: 0, arm: "knights", count: 20, x: 850, y: 780 });
+issueOrder(w, [u.id, k.id], { kind: "move", x: 2000, y: 2200 });
+const t0 = performance.now();
+for (let i = 0; i < 3000; i++) step(w);
+const S = w.S; let fat = 0; for (const id of u.members) fat += S.fatigue[id];
+console.log("anchor", u.ax.toFixed(1), u.ay.toFixed(1), "path", u.path, "k", k.ax.toFixed(0), k.ay.toFixed(0), "fat", (fat/u.members.length).toFixed(3), "ms/tick", ((performance.now()-t0)/3000).toFixed(3));
+console.log("s0", S.x[u.members[0]].toFixed(1), S.y[u.members[0]].toFixed(1));
