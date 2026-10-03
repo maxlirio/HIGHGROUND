@@ -1,0 +1,28 @@
+{
+  "name": "mud",
+  "tile_m": 4.0,
+  "res": 1024,
+  "avg_srgb": "#47392a",
+  "avg_linear": [
+    0.0637,
+    0.0413,
+    0.0235
+  ],
+  "height_range_m": 0.2495,
+  "height_min_m": -0.0596,
+  "rough_mean": 0.605,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.121,
+    "height": 0.928,
+    "rough": 1.066
+  },
+  "notes": "Churned mud: boot+hoof prints, wheel-slewed lumps, brown-water puddles in the hollows (roughness ~0.05 there). Wettest, slowest ground.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "mud",
+    "battlefield_churn"
+  ]
+}

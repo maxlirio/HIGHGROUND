@@ -1,0 +1,28 @@
+{
+  "name": "grazed_pasture",
+  "tile_m": 16.0,
+  "res": 1024,
+  "avg_srgb": "#5a6830",
+  "avg_linear": [
+    0.1018,
+    0.1385,
+    0.0298
+  ],
+  "height_range_m": 0.2721,
+  "height_min_m": -0.0603,
+  "rough_mean": 0.83,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.02,
+    "height": 1.076,
+    "rough": 1.012
+  },
+  "notes": "Grazed pasture: bitten-down sward, rank tufts round old dung, thistles, trodden paths.",
+  "displace_m": 0.0,
+  "aliases": [
+    "pasture"
+  ],
+  "macro_hint": "tile holds <=3 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "A-vegetated"
+}

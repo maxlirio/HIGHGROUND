@@ -1,0 +1,28 @@
+{
+  "name": "riverbank_mud",
+  "tile_m": 4.0,
+  "res": 1024,
+  "avg_srgb": "#504738",
+  "avg_linear": [
+    0.0806,
+    0.0629,
+    0.0398
+  ],
+  "height_range_m": 0.0849,
+  "height_min_m": -0.0285,
+  "rough_mean": 0.265,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.013,
+    "height": 1.106,
+    "rough": 1.065
+  },
+  "notes": "Wet riverbank mud: glossy grey-brown silt, current ripples and drainage rills, half-buried pebbles, bird tracks, thin water sheen in the lows.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "tidal_mudflat",
+    "stream_bed"
+  ]
+}

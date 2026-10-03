@@ -1,0 +1,27 @@
+{
+  "name": "boulder_field",
+  "tile_m": 16.0,
+  "res": 1024,
+  "avg_srgb": "#676447",
+  "avg_linear": [
+    0.1353,
+    0.1277,
+    0.0627
+  ],
+  "height_range_m": 0.9531,
+  "height_min_m": -0.2981,
+  "rough_mean": 0.862,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.201,
+    "height": 1.058,
+    "rough": 1.115
+  },
+  "notes": "Boulder field / clitter: rounded granite boulders 0.4-2.5 m half-sunk in rough acid grassland, lichen-crusted tops, moss at the bases, smaller stones between. Blocks formations; hard cover for skirmishers.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "boulder_field"
+  ]
+}

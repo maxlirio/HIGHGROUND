@@ -1,0 +1,88 @@
+{
+ "map": "grimetdale",
+ "generator": "tools/map/realm_holds.mjs",
+ "minSpacing_m": 863,
+ "rule": "flat dry 90 m core, water ≤ 700 m, wood ≤ 900 m, ≥ 300 m from the edge, ≥ 800 m apart",
+ "holds": [
+  {
+   "id": "town0",
+   "name": "Hazelthorpe",
+   "x": 893,
+   "y": 2233,
+   "water_m": 760,
+   "wood_m": 40,
+   "slope": null,
+   "town": true
+  },
+  {
+   "id": "town1",
+   "name": "Redcote",
+   "x": 3336,
+   "y": 652,
+   "water_m": 880,
+   "wood_m": 540,
+   "slope": null,
+   "town": true
+  },
+  {
+   "id": "thornby",
+   "name": "Thornby",
+   "x": 3700,
+   "y": 3125,
+   "water_m": 260,
+   "wood_m": 20,
+   "slope": 0.024,
+   "town": false
+  },
+  {
+   "id": "kettlewick",
+   "name": "Kettlewick",
+   "x": 2275,
+   "y": 1700,
+   "water_m": 140,
+   "wood_m": 80,
+   "slope": 0.066,
+   "town": false
+  },
+  {
+   "id": "stanmere",
+   "name": "Stanmere",
+   "x": 2050,
+   "y": 3525,
+   "water_m": 660,
+   "wood_m": 40,
+   "slope": 0.096,
+   "town": false
+  },
+  {
+   "id": "brackenholt",
+   "name": "Brackenholt",
+   "x": 475,
+   "y": 1275,
+   "water_m": 260,
+   "wood_m": 40,
+   "slope": 0.086,
+   "town": false
+  },
+  {
+   "id": "oakhurst",
+   "name": "Oakhurst",
+   "x": 2550,
+   "y": 2650,
+   "water_m": 240,
+   "wood_m": 40,
+   "slope": 0.06,
+   "town": false
+  },
+  {
+   "id": "fellgate",
+   "name": "Fellgate",
+   "x": 3175,
+   "y": 1500,
+   "water_m": 480,
+   "wood_m": 100,
+   "slope": 0.069,
+   "town": false
+  }
+ ]
+}

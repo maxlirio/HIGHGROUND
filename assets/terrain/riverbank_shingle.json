@@ -1,0 +1,27 @@
+{
+  "name": "riverbank_shingle",
+  "tile_m": 3.0,
+  "res": 1024,
+  "avg_srgb": "#868172",
+  "avg_linear": [
+    0.2374,
+    0.2179,
+    0.1678
+  ],
+  "height_range_m": 0.0828,
+  "height_min_m": -0.0352,
+  "rough_mean": 0.564,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.015,
+    "height": 1.285,
+    "rough": 1.165
+  },
+  "notes": "Riverbank shingle: rounded, flattened, well-sorted river pebbles 1-9 cm in mixed lithologies (grey greywacke, buff sandstone, dark slate, white quartz), patches of finer gravel.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "riverbank_shingle"
+  ]
+}

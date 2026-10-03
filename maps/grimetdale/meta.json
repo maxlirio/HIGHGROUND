@@ -1,0 +1,421 @@
+{
+ "name": "Grimetdale",
+ "map_id": "grimetdale",
+ "generator": {
+  "script": "tools/map/make_map.py",
+  "seed": 7,
+  "archetype": "highland",
+  "relief": "bold"
+ },
+ "size_m": 4000.0,
+ "res": 1025,
+ "cell_m": 3.90625,
+ "origin": "SW corner; +x east, +y north, metres; z up (metres above datum)",
+ "height_f32_row_order": "row 0 = SOUTH edge (y=0); index = j*res + i, x=i*cell, y=j*cell",
+ "png_row_order": "row 0 = NORTH edge (north-up images)",
+ "height_min_m": 43.29,
+ "height_max_m": 328.41,
+ "sea_level_m": null,
+ "water": {
+  "datum_note": "no sea on this map; water surface = height + water depth",
+  "river_surface_m": {
+   "enters": 91.0,
+   "exits": 45.0
+  },
+  "mere_level_m": 87.94
+ },
+ "layers": {
+  "height.f32": "float32 LE terrain/bed height (m), south-first rows",
+  "water.f32": "float32 LE water depth (m), south-first rows (js/sim/map.js loads this)",
+  "surface.u8": "uint8 surface id (index into surfaceKeys), south-first rows, res x res",
+  "canopy.u8": "uint8 canopy / tall-vegetation height in metres above ground, south-first rows",
+  "vegetation.json": "tree & shrub instances {asset,x,y,rot,scale} in world metres"
+ },
+ "stats": {
+  "land_pits_filled": 3099,
+  "residual_pits": 0,
+  "max_upstream_area_km2_onmap": 10.26
+ },
+ "surfaceKeys": [
+  "short_meadow",
+  "tall_grass",
+  "flower_meadow",
+  "pasture",
+  "water_meadow",
+  "heath_heather",
+  "moorland",
+  "gorse_scrub",
+  "bracken",
+  "fallow",
+  "ploughed_field",
+  "standing_wheat",
+  "standing_barley",
+  "standing_oats_beans",
+  "stubble",
+  "orchard",
+  "kitchen_garden",
+  "open_forest",
+  "dense_forest",
+  "pine_forest",
+  "coppice",
+  "bramble_thicket",
+  "hedgerow",
+  "alder_carr",
+  "deadfall_clearing",
+  "bare_earth",
+  "dirt_track",
+  "village_street",
+  "trampled_ground",
+  "mud",
+  "clay_heavy",
+  "peat_bog",
+  "marsh",
+  "reed_bed_fen",
+  "shallow_ford",
+  "stream_bed",
+  "deep_water",
+  "riverbank_shingle",
+  "gravel",
+  "limestone_pavement",
+  "scree",
+  "cliff_rock",
+  "rock_slab",
+  "boulder_field",
+  "quarry_floor",
+  "ruins_rubble"
+ ],
+ "landuse": {
+  "generator": "tools/map/make_map.py",
+  "seed": 7,
+  "season": "late summer (harvest)",
+  "coverage_pct": {
+   "pasture": 16.51,
+   "open_forest": 7.54,
+   "fallow": 6.43,
+   "coppice": 6.12,
+   "short_meadow": 4.97,
+   "standing_oats_beans": 4.55,
+   "flower_meadow": 4.25,
+   "heath_heather": 4.23,
+   "standing_wheat": 4.0,
+   "marsh": 3.35,
+   "bracken": 3.29,
+   "tall_grass": 3.27,
+   "standing_barley": 3.14,
+   "dense_forest": 2.86,
+   "deep_water": 2.82,
+   "hedgerow": 2.51,
+   "stubble": 2.3,
+   "reed_bed_fen": 2.18,
+   "bramble_thicket": 2.03,
+   "scree": 1.78,
+   "alder_carr": 1.57,
+   "gorse_scrub": 1.52,
+   "ploughed_field": 1.49,
+   "water_meadow": 1.41,
+   "moorland": 1.19,
+   "rock_slab": 0.81,
+   "boulder_field": 0.67,
+   "pine_forest": 0.63,
+   "kitchen_garden": 0.44,
+   "dirt_track": 0.39,
+   "trampled_ground": 0.39,
+   "cliff_rock": 0.32,
+   "limestone_pavement": 0.24,
+   "shallow_ford": 0.17,
+   "orchard": 0.14,
+   "deadfall_clearing": 0.11,
+   "mud": 0.11,
+   "riverbank_shingle": 0.08,
+   "peat_bog": 0.05,
+   "stream_bed": 0.05,
+   "quarry_floor": 0.05,
+   "village_street": 0.03,
+   "clay_heavy": 0.01,
+   "gravel": 0.01,
+   "bare_earth": 0.0,
+   "ruins_rubble": 0.0
+  },
+  "vegetation_instances": 46421,
+  "settlements_used": [
+   "Hazelthorpe",
+   "Redcote",
+   "Wulfdon",
+   "Coldcote",
+   "Selfield",
+   "Reddon",
+   "Ox Rigg Keep (ruin)",
+   "Wayside Chapel",
+   "Gallows at the Gap"
+  ],
+  "roads_used": 22
+ },
+ "features": [
+  {
+   "name": "Hazelthorpe (blue town)",
+   "type": "town_site",
+   "xy_m": [
+    893.3,
+    2232.7
+   ],
+   "grid_ij": [
+    229,
+    572
+   ],
+   "z_m": 148.3,
+   "note": "Blue home ground: a flat dry rise with its own farmland."
+  },
+  {
+   "name": "Hazelthorpe farmland",
+   "type": "farmland",
+   "xy_m": [
+    739.7,
+    2378.6
+   ],
+   "grid_ij": [
+    189,
+    609
+   ],
+   "z_m": 147.4,
+   "note": "Rolling fields around Hazelthorpe."
+  },
+  {
+   "name": "Redcote (red town)",
+   "type": "town_site",
+   "xy_m": [
+    3335.9,
+    651.8
+   ],
+   "grid_ij": [
+    854,
+    167
+   ],
+   "z_m": 110.2,
+   "note": "Red home ground: a flat dry rise with its own farmland."
+  },
+  {
+   "name": "Redcote farmland",
+   "type": "farmland",
+   "xy_m": [
+    3164.2,
+    770.8
+   ],
+   "grid_ij": [
+    810,
+    197
+   ],
+   "z_m": 110.9,
+   "note": "Rolling fields around Redcote."
+  },
+  {
+   "name": "River Grimet",
+   "type": "river",
+   "xy_m": [
+    1536.5,
+    1657.1
+   ],
+   "grid_ij": [
+    393,
+    424
+   ],
+   "z_m": 72.1,
+   "note": "Unfordable except at the fords; the water is the front line."
+  },
+  {
+   "name": "Wade Ford",
+   "type": "ford",
+   "xy_m": [
+    1051.3,
+    1438.9
+   ],
+   "grid_ij": [
+    269,
+    368
+   ],
+   "z_m": 78.8,
+   "note": "Wide gravel riffle ~0.4 m deep; a fighting crossing."
+  },
+  {
+   "name": "Salter's Ford",
+   "type": "ford",
+   "xy_m": [
+    2924.7,
+    2926.3
+   ],
+   "grid_ij": [
+    749,
+    749
+   ],
+   "z_m": 53.1,
+   "note": "Wide gravel riffle ~0.4 m deep; a fighting crossing."
+  },
+  {
+   "name": "Grimet Bridge site",
+   "type": "bridge_site",
+   "xy_m": [
+    1980.5,
+    2111.3
+   ],
+   "grid_ij": [
+    507,
+    540
+   ],
+   "z_m": 71.3,
+   "note": "Narrow deep reach with firm raised banks: the place to bridge."
+  },
+  {
+   "name": "Ox Rigg",
+   "type": "rocky_upland",
+   "xy_m": [
+    1390.6,
+    675.8
+   ],
+   "grid_ij": [
+    356,
+    173
+   ],
+   "z_m": 328.4,
+   "note": "Rocky upland with crags and scree: slow going, superb observation."
+  },
+  {
+   "name": "Hask Pike",
+   "type": "rocky_upland",
+   "xy_m": [
+    2812.5,
+    1988.3
+   ],
+   "grid_ij": [
+    720,
+    509
+   ],
+   "z_m": 258.9,
+   "note": "Rocky upland with crags and scree: slow going, superb observation."
+  },
+  {
+   "name": "Mere Knowe Gap",
+   "type": "defile",
+   "xy_m": [
+    1691.1,
+    3195.8
+   ],
+   "grid_ij": [
+    433,
+    818
+   ],
+   "z_m": 108.1,
+   "note": "Narrow pass between two steep hills: a column is trapped; a few can hold it."
+  },
+  {
+   "name": "Wyn Tor",
+   "type": "hill",
+   "xy_m": [
+    1671.9,
+    2757.8
+   ],
+   "grid_ij": [
+    428,
+    706
+   ],
+   "z_m": 180.9,
+   "note": "A jaw of the pass; steep inner face."
+  },
+  {
+   "name": "Fen Rigg",
+   "type": "hill",
+   "xy_m": [
+    1343.8,
+    3410.2
+   ],
+   "grid_ij": [
+    344,
+    873
+   ],
+   "z_m": 189.5,
+   "note": "A jaw of the pass; steep inner face."
+  },
+  {
+   "name": "Ket Mere",
+   "type": "lake",
+   "xy_m": [
+    2331.3,
+    1256.8
+   ],
+   "grid_ij": [
+    597,
+    322
+   ],
+   "z_m": 76.5,
+   "note": "Lake, level 87.94 m: anchors a flank, impassable."
+  },
+  {
+   "name": "Stan Brook",
+   "type": "gully",
+   "xy_m": [
+    1923.8,
+    1815.9
+   ],
+   "grid_ij": [
+    492,
+    465
+   ],
+   "z_m": 69.7,
+   "note": "Stream gully draining the mere: covered route and obstacle."
+  },
+  {
+   "name": "The Moss",
+   "type": "marsh",
+   "xy_m": [
+    898.4,
+    1460.9
+   ],
+   "grid_ij": [
+    230,
+    374
+   ],
+   "z_m": 81.1,
+   "note": "Floodplain marsh: infantry wade, cavalry and carts bog down."
+  },
+  {
+   "name": "The Open Field",
+   "type": "open_plain",
+   "xy_m": [
+    3419.5,
+    620.4
+   ],
+   "grid_ij": [
+    875,
+    159
+   ],
+   "z_m": 109.6,
+   "note": "Long gentle open plain: cavalry ground."
+  },
+  {
+   "name": "Mere Beck",
+   "type": "stream_valley",
+   "xy_m": [
+    1629.2,
+    1397.3
+   ],
+   "grid_ij": [
+    417,
+    358
+   ],
+   "z_m": 77.6,
+   "note": "Shallow beck valley: a low line of approach."
+  },
+  {
+   "name": "Sel Burn",
+   "type": "wooded_valley",
+   "xy_m": [
+    3100.9,
+    2505.7
+   ],
+   "grid_ij": [
+    794,
+    641
+   ],
+   "z_m": 75.6,
+   "note": "Tributary valley: a covered approach."
+  }
+ ]
+}

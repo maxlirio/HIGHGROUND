@@ -1,0 +1,10 @@
+{
+ "name": "ashlar",
+ "tile_m": 6.0,
+ "res": 2048,
+ "avg_srgb": "#ac9f87",
+ "rough_mean": 0.814,
+ "relief_m": 0.0374,
+ "seam": 1.282,
+ "notes": "coursed limestone ashlar, 27-46 cm courses, lime mortar"
+}

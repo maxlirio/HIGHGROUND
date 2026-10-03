@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HIGHGROUND</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/battle.css">
+<link rel="stylesheet" href="css/siege.css">
+<script>
+// three.js 0.170: the local copy in vendor/three (the realm box has no internet; Pages and the Mac app ship it too),
+// the CDN only when that copy is missing. (An importmap can't fall back by itself, so it is written here.)
+(function () {
+  var base = "https://cdn.jsdelivr.net/npm/three@0.170.0/";
+  try { var x = new XMLHttpRequest(); x.open("GET", "vendor/three/LICENSE", false); x.send(); if (x.status >= 200 && x.status < 300) base = "./vendor/three/"; } catch (e) { /* offline probe failed: CDN */ }
+  var m = document.createElement("script"); m.type = "importmap";
+  m.textContent = JSON.stringify({ imports: { "three": base + "build/three.module.js", "three/addons/": base + "examples/jsm/" } });
+  document.currentScript.after(m);
+})();
+</script>
+</head>
+<body>
+<canvas id="view"></canvas>
+<div id="labels"></div>
+<div id="selbox" hidden></div>
+<div id="hud">
+  <div id="topbar">
+    <span class="brand">HIGHGROUND</span>
+    <span id="res"></span>
+    <span id="clock"></span>
+    <button id="buildbtn">Build</button><button id="cmdbtn" title="Your captains: who leads which men, and battles left to them">Commanders</button><button id="spellbtn" title="What your adepts can work, and what it costs in mana">Spells</button><button id="techbtn" title="Research at the keep: the tech tree — what your clerk can study, what it costs and what it changes">Research</button>
+  </div>
+  <div id="siegebar" hidden></div>
+  <div id="battlepop" hidden></div>
+  <div id="chron"></div>
+  <div id="overlays">
+    <div class="ovtitle">View <small>(V)</small></div>
+    <div class="views"><button data-view="0">Map</button><button data-view="1" class="on">Eagle</button><button data-view="2">Oblique</button><button data-view="3">Ground</button></div>
+    <div class="ovhint">R/F tilt · Q/E rotate · ⌥-drag orbit</div>
+    <div class="views quality" title="Render quality: Low for older laptops, High for a strong GPU (anti-aliasing changes on reload)"><button data-quality="low">Low</button><button data-quality="medium" class="on">Medium</button><button data-quality="high">High</button></div>
+    <div class="ovtitle">Battlefield</div>
+    <button data-ov="none" class="on">Plain</button>
+    <button data-ov="elevation">Elevation</button>
+    <button data-ov="defensible">Defensible</button>
+    <button data-ov="cover">Cover</button>
+    <button data-ov="going">Going</button>
+    <button data-ov="charge">Charge lanes</button>
+    <button data-ov="los">Line of sight</button>
+  </div>
+  <div id="selinfo" hidden></div>
+  <div id="selbar" hidden></div>
+</div>
+<div id="orderpop" hidden></div>
+<div id="bpanel" hidden></div>
+<div id="techpanel" hidden></div>
+<div id="toast"></div>
+<div id="modal" hidden></div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "name": "short_meadow",
+  "tile_m": 12.0,
+  "res": 1024,
+  "avg_srgb": "#586730",
+  "avg_linear": [
+    0.098,
+    0.1353,
+    0.0291
+  ],
+  "height_range_m": 0.1877,
+  "height_min_m": -0.0368,
+  "rough_mean": 0.831,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.092,
+    "height": 1.034,
+    "rough": 1.029
+  },
+  "notes": "Short meadow grass 5-12 cm: dense sward, tufts, clover patches, a few dry spots.",
+  "displace_m": 0.0,
+  "aliases": [
+    "meadow",
+    "grass",
+    "meadow_short",
+    "short_grass"
+  ],
+  "macro_hint": "tile holds <=3 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "A-vegetated"
+}

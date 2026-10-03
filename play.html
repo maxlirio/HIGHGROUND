@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HIGHGROUND · The Realm</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+<!-- The desktop apps (desktop/) open this page: the game modes, and the Realm's sign-in. Each person has their OWN account
+     (a name and a password) and owns exactly one house; signing in once remembers this device (a session token in
+     localStorage, server/accounts.mjs). Creating an account needs the family's realm key; signing in never does.
+     play.html?claim=TOKEN claims a house that was founded before accounts existed (once). -->
+<style>
+  :root { --ground: #120f0b; --panel: #1c1712; --edge: #5b4a2c; --gold: #d9ae5a; --ink: #eee5d2; --dim: #a79b86; --bad: #e0776a; --good: #9cc27a; }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html, body { height: 100%; }
+  body { margin: 0; background: radial-gradient(ellipse at 50% 38%, #2a2217 0%, var(--ground) 70%); color: var(--ink);
+    font: 17px/1.5 "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; display: grid; place-items: center; padding: 24px 16px; }
+  main { width: min(460px, 100%); display: grid; gap: 22px; text-align: center; }
+  h1 { margin: 0; font-size: clamp(30px, 7vw, 42px); letter-spacing: .32em; color: var(--gold); font-weight: 700; padding-left: .32em; }
+  .sub { margin: -12px 0 0; letter-spacing: .22em; font-size: 13px; color: var(--dim); text-transform: uppercase; }
+  .card { display: grid; gap: 12px; background: var(--panel); border: 1px solid var(--edge); padding: 22px; text-align: left; }
+  .card h3 { margin: 0; color: var(--gold); font-size: 18px; font-weight: 600; }
+  form { display: grid; gap: 10px; }
+  label { font-size: 15px; color: var(--dim); display: grid; gap: 4px; }
+  input { font: 17px ui-monospace, Menlo, Consolas, monospace; padding: 10px 12px; background: #0d0b08; color: var(--ink); border: 1px solid var(--edge); width: 100%; }
+  input[aria-invalid="true"] { border-color: var(--bad); }
+  input:focus-visible, button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  button { font: 600 17px inherit; font-family: inherit; padding: 11px; background: #3a2e1a; color: var(--gold); border: 1px solid var(--gold); cursor: pointer; }
+  button:hover { background: #4a3b20; } button:disabled { opacity: .6; cursor: default; }
+  button.ghost { background: transparent; color: var(--dim); border-color: var(--edge); font-weight: 400; font-size: 15px; padding: 8px; }
+  button.ghost:hover { color: var(--gold); border-color: var(--gold); background: transparent; }
+  button.ghost.warn { color: var(--bad); border-color: var(--bad); }
+  .row { display: flex; gap: 8px; } .row > * { flex: 1; }
+  .msg { min-height: 1.5em; margin: 0; font-size: 15px; color: var(--dim); }
+  .msg.bad { color: var(--bad); } .msg.good { color: var(--good); }
+  .hint { font-size: 13px; color: var(--dim); min-height: 1.3em; margin: -4px 0 0; } .hint.bad { color: #e7a07a; } .hint.good { color: var(--good); }
+  .who { margin: 0; font-size: 17px; } .who b { color: var(--gold); font-weight: 600; } .who small { display: block; color: var(--dim); font-size: 14px; }
+  .tabs { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--edge); margin: -4px 0 4px; }
+  .tabs button { background: none; border: 0; border-bottom: 2px solid transparent; color: var(--dim); font-weight: 400; padding: 8px; }
+  .tabs button[aria-selected="true"] { color: var(--gold); border-bottom-color: var(--gold); font-weight: 600; }
+  .alt { font-size: 14px; color: var(--dim); } .alt a { color: var(--gold); }
+  nav { display: grid; gap: 12px; text-align: left; }
+  .mode { display: grid; gap: 3px; background: var(--panel); border: 1px solid var(--edge); padding: 15px 18px; cursor: pointer; color: var(--ink); text-align: left; font: inherit; width: 100%; }
+  .mode:hover, .mode:focus-visible { border-color: var(--gold); background: #241d14; }
+  .mode b { color: var(--gold); font-size: 19px; letter-spacing: .04em; }
+  .mode span { color: var(--dim); font-size: 14.5px; }
+</style>
+</head>
+<body>
+<main>
+  <div><h1>HIGHGROUND</h1></div>
+  <p class="sub">The Realm</p>
+  <nav id="menu" hidden>
+    <button class="mode" id="m-realm"><b>The Realm</b><span>Our family's kingdom — always on, everyone in one world</span></button>
+    <button class="mode" data-go="./"><b>Campaign</b><span>Your own lordship against the AI — build, conquer, besiege</span></button>
+    <button class="mode" data-go="./?mode=battle"><b>Pitched Battle</b><span>Two armies drawn up on a field — just the fight</span></button>
+    <button class="mode" data-go="./?mode=siege"><b>Siege</b><span>A castle, its garrison and the besieging host</span></button>
+    <button class="mode" data-go="./?mode=ranked"><b>Ranked Battle</b><span>Your own host against another lord's — win spoils, grow your army, climb the table</span></button>
+  </nav>
+
+  <!-- signed in on this device -->
+  <section id="me" class="card" hidden>
+    <h3>The Realm</h3>
+    <p class="who" id="meWho">Checking…</p>
+    <button id="meGo" type="button">Enter the realm</button>
+    <div class="row"><button id="meOut" type="button" class="ghost">Sign out</button><button id="meOutAll" type="button" class="ghost">Sign out everywhere</button></div>
+    <p class="msg" id="meMsg" role="status"></p>
+  </section>
+
+  <!-- sign in / create account -->
+  <section id="auth" class="card" hidden>
+    <h3>The Realm</h3>
+    <div class="tabs" role="tablist">
+      <button type="button" role="tab" id="tabIn" aria-controls="signin" aria-selected="true">Sign in</button>
+      <button type="button" role="tab" id="tabUp" aria-controls="signup" aria-selected="false">Create account</button>
+    </div>
+    <form id="signin" role="tabpanel" aria-labelledby="tabIn" novalidate>
+      <label>Your name <input id="inName" name="username" autocomplete="username" autocapitalize="off" spellcheck="false" maxlength="24" required></label>
+      <label>Password <input id="inPass" name="password" type="password" autocomplete="current-password" maxlength="256" required></label>
+      <button type="submit">Sign in</button>
+      <p class="msg" id="inMsg" role="status"></p>
+    </form>
+    <form id="signup" role="tabpanel" aria-labelledby="tabUp" novalidate hidden>
+      <label>Choose a name <input id="upName" name="username" autocomplete="username" autocapitalize="off" spellcheck="false" maxlength="24" required></label>
+      <label>Password <input id="upPass" name="new-password" type="password" autocomplete="new-password" maxlength="256" required></label>
+      <p class="hint" id="upHint">At least 6 characters. A few words together make a strong one.</p>
+      <label>Password again <input id="upPass2" type="password" autocomplete="new-password" maxlength="256" required></label>
+      <label>Realm key <input id="upKey" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="200" required></label>
+      <p class="hint">The family phrase from whoever runs the realm. You only need it once.</p>
+      <button type="submit">Create account</button>
+      <p class="msg" id="upMsg" role="status"></p>
+    </form>
+    <form id="change" novalidate hidden>
+      <p class="msg" id="chWhy">Your password was reset. Choose a new one.</p>
+      <label>New password <input id="chPass" type="password" autocomplete="new-password" maxlength="256" required></label>
+      <p class="hint" id="chHint"></p>
+      <label>New password again <input id="chPass2" type="password" autocomplete="new-password" maxlength="256" required></label>
+      <button type="submit">Set my password</button>
+      <p class="msg" id="chMsg" role="status"></p>
+    </form>
+  </section>
+
+  <!-- claim a house founded before accounts (play.html?claim=TOKEN) -->
+  <section id="claim" class="card" hidden>
+    <h3>Claim your house</h3>
+    <p class="who" id="clWho">Checking the claim…</p>
+    <form id="claimForm" novalidate hidden>
+      <label>Choose your name <input id="clName" name="username" autocomplete="username" autocapitalize="off" spellcheck="false" maxlength="24" required></label>
+      <label>Password <input id="clPass" name="new-password" type="password" autocomplete="new-password" maxlength="256" required></label>
+      <p class="hint" id="clHint">At least 6 characters. A few words together make a strong one.</p>
+      <label>Password again <input id="clPass2" type="password" autocomplete="new-password" maxlength="256" required></label>
+      <button type="submit">Claim my house</button>
+    </form>
+    <p class="msg" id="clMsg" role="status"></p>
+  </section>
+
+  <p class="msg" id="wait" hidden>Riding to the realm…</p>
+  <p class="alt" id="back" hidden><a href="./play.html">&larr; All game modes</a></p>
+</main>
+<script>
+const KEY = "hg.realm.session"; // (js/realm/client.js SESSION_KEY)
+const $ = (id) => document.getElementById(id);
+const store = { get() { try { return localStorage.getItem(KEY); } catch { return null; } }, set(v) { try { localStorage.setItem(KEY, v); } catch {} }, drop() { try { localStorage.removeItem(KEY); } catch {} } };
+try { localStorage.removeItem("hg.realm.token"); } catch {} // (the old invite code: it means nothing now)
+const esc = (t) => String(t ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const DOWN = "Can't reach the realm right now. Check your internet — or the realm's computer may be off. Try again in a minute.";
+async function api(path, body) {
+  let r; try { r = await fetch(path, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body), cache: "no-store" }); } catch { return { ok: false, down: true, error: DOWN }; }
+  let j = null; try { j = await r.json(); } catch {}
+  if (!j) return { ok: false, down: true, error: r.status === 404 || r.status === 405 ? "This page is not on the realm's own server: open the realm's address instead." : DOWN };
+  j.status = r.status; return j;
+}
+const SECTIONS = ["menu", "me", "auth", "claim", "wait"];
+function show(id) { for (const s of SECTIONS) $(s).hidden = s !== id; $("back").hidden = id === "menu" || id === "wait"; }
+function say(el, text, kind = "") { el.textContent = text || ""; el.className = (el.classList.contains("hint") ? "hint" : "msg") + (kind ? " " + kind : ""); }
+const houseLine = (me) => { const h = me && me.house; if (!h) return ""; return h.founded && h.name ? `House ${esc(h.name)} at ${esc(h.hold)}` : h.fallen ? `your house at ${esc(h.hold)} has fallen — start again` : `your hold is ${esc(h.hold)} — found your house when you enter`; };
+const enter = () => { show("wait"); location.replace("/?realm"); };
+
+// a gentle nudge, never a rule beyond the server's 6 characters
+const COMMON = /^(123456\d*|password\d*|qwerty\w*|letmein|111111|abc123|iloveyou|dragon|monkey|football|baseball|welcome)$/i;
+function strength(pw, name) {
+  if (!pw) return ["At least 6 characters. A few words together make a strong one.", ""];
+  if (pw.length < 6) return [`${6 - pw.length} more character${pw.length === 5 ? "" : "s"} needed.`, "bad"];
+  if (COMMON.test(pw) || /^(.)\1+$/.test(pw) || /^\d+$/.test(pw)) return ["That one is easy to guess — try a few words together.", "bad"];
+  if (name && name.length > 2 && pw.toLowerCase().includes(name.toLowerCase())) return ["Better not to use your name in it.", "bad"];
+  if (pw.length < 10) return ["OK. Longer is stronger — a short phrase is easy to remember.", ""];
+  return ["Strong.", "good"];
+}
+function nudge(input, hint, nameInput) { const f = () => { const [t, k] = strength(input.value, nameInput && nameInput.value.trim()); say(hint, t, k); }; input.addEventListener("input", f); nameInput && nameInput.addEventListener("input", f); }
+nudge($("upPass"), $("upHint"), $("upName")); nudge($("clPass"), $("clHint"), $("clName")); nudge($("chPass"), $("chHint"));
+function mark(form, field) { for (const i of form.querySelectorAll("input")) i.removeAttribute("aria-invalid"); const el = field && form.querySelector(`[data-f="${field}"]`); if (el) { el.setAttribute("aria-invalid", "true"); el.focus(); } }
+$("inName").dataset.f = "name"; $("inPass").dataset.f = "password"; $("upName").dataset.f = "name"; $("upPass").dataset.f = "password"; $("upKey").dataset.f = "key";
+$("clName").dataset.f = "name"; $("clPass").dataset.f = "password"; $("chPass").dataset.f = "newPassword";
+
+// ---- signed in on this device: who, Enter, Sign out (this device / everywhere)
+async function showMe(msg) {
+  show("me"); $("meGo").disabled = true; $("meWho").textContent = "Checking…"; say($("meMsg"), msg || "");
+  const s = store.get(); if (!s) return showAuth("in");
+  const r = await api("auth/me", { s });
+  if (r.ok) { $("meWho").innerHTML = `Signed in as <b>${esc(r.me.name)}</b><small>${houseLine(r.me)}</small>`; $("meGo").disabled = false; $("meGo").focus(); return r; }
+  if (r.down) { $("meWho").textContent = r.error; $("meGo").disabled = false; return null; }
+  store.drop(); showAuth("in", "This device was signed out. Sign in again.", "bad"); return null;
+}
+$("meGo").addEventListener("click", () => enter());
+async function signOut(all) {
+  const s = store.get();
+  try { const reg = "serviceWorker" in navigator ? await navigator.serviceWorker.getRegistration() : null, sub = reg && reg.pushManager && await reg.pushManager.getSubscription();
+    if (sub && s) { await api("push/unsubscribe", { s, endpoint: sub.endpoint }); await sub.unsubscribe(); } } catch {}
+  const r = s ? await api(all ? "auth/logout-all" : "auth/logout", { s }) : { ok: true };
+  if (r.down) return say($("meMsg"), r.error, "bad");
+  store.drop(); showAuth("in", all ? "Signed out on every device." : "Signed out on this device.", "good");
+}
+$("meOut").addEventListener("click", () => signOut(false));
+$("meOutAll").addEventListener("click", () => { const b = $("meOutAll"); if (!b.classList.contains("warn")) { b.classList.add("warn"); b.textContent = "Click again: every device"; setTimeout(() => { b.classList.remove("warn"); b.textContent = "Sign out everywhere"; }, 5000); return; } signOut(true); });
+
+// ---- sign in / create account
+function tab(which) {
+  const up = which === "up";
+  $("tabIn").setAttribute("aria-selected", String(!up)); $("tabUp").setAttribute("aria-selected", String(up));
+  $("signin").hidden = up; $("signup").hidden = !up; $("change").hidden = true;
+  (up ? $("upName") : ($("inName").value ? $("inPass") : $("inName"))).focus();
+}
+$("tabIn").addEventListener("click", () => tab("in")); $("tabUp").addEventListener("click", () => tab("up"));
+for (const t of [$("tabIn"), $("tabUp")]) t.addEventListener("keydown", (e) => { if (e.key === "ArrowLeft" || e.key === "ArrowRight") { e.preventDefault(); const o = t.id === "tabIn" ? $("tabUp") : $("tabIn"); o.focus(); o.click(); } });
+function showAuth(which, msg = "", kind = "") { show("auth"); tab(which); say(which === "up" ? $("upMsg") : $("inMsg"), msg, kind); }
+function signedIn(r) { store.set(r.session); for (const i of document.querySelectorAll("input[type=password]")) i.value = ""; showMe(); }
+const busy = (form, on) => { for (const b of form.querySelectorAll("button")) b.disabled = on; };
+
+$("signin").addEventListener("submit", async (e) => {
+  e.preventDefault(); const f = $("signin"), name = $("inName").value.trim(), password = $("inPass").value;
+  if (!name) { mark(f, "name"); return say($("inMsg"), "Enter your name.", "bad"); }
+  if (!password) { mark(f, "password"); return say($("inMsg"), "Enter your password.", "bad"); }
+  busy(f, true); say($("inMsg"), "Signing in…"); const r = await api("auth/login", { name, password }); busy(f, false);
+  if (r.ok) return signedIn(r);
+  if (r.mustChange) { pendingChange = { name, password }; $("signin").hidden = true; $("signup").hidden = true; $("change").hidden = false; say($("chWhy"), r.error || "Choose a new password."); $("chPass").focus(); return; }
+  mark(f, r.status === 401 ? "password" : null); if (r.status === 401) $("inPass").select();
+  say($("inMsg"), r.error || "That did not work.", "bad");
+});
+let pendingChange = null;
+$("change").addEventListener("submit", async (e) => {
+  e.preventDefault(); const f = $("change"), p1 = $("chPass").value, p2 = $("chPass2").value;
+  if (p1.length < 6) { mark(f, "newPassword"); return say($("chMsg"), "At least 6 characters.", "bad"); }
+  if (p1 !== p2) { $("chPass2").setAttribute("aria-invalid", "true"); $("chPass2").focus(); return say($("chMsg"), "The two passwords are not the same.", "bad"); }
+  busy(f, true); const r = await api("auth/change", { ...pendingChange, newPassword: p1 }); busy(f, false);
+  if (r.ok) { pendingChange = null; return signedIn(r); }
+  mark(f, r.field); say($("chMsg"), r.error || "That did not work.", "bad");
+});
+$("signup").addEventListener("submit", async (e) => {
+  e.preventDefault(); const f = $("signup"), name = $("upName").value.trim(), password = $("upPass").value, key = $("upKey").value.trim();
+  if (name.length < 2) { mark(f, "name"); return say($("upMsg"), "Choose a name of at least 2 letters.", "bad"); }
+  if (password.length < 6) { mark(f, "password"); return say($("upMsg"), "The password needs at least 6 characters.", "bad"); }
+  if (password !== $("upPass2").value) { mark(f, null); $("upPass2").setAttribute("aria-invalid", "true"); $("upPass2").focus(); return say($("upMsg"), "The two passwords are not the same.", "bad"); }
+  if (!key) { mark(f, "key"); return say($("upMsg"), "Enter the realm key.", "bad"); }
+  busy(f, true); say($("upMsg"), "Creating your account…"); const r = await api("auth/signup", { name, password, key }); busy(f, false);
+  if (r.ok) return signedIn(r);
+  mark(f, r.field); say($("upMsg"), r.error || "That did not work.", "bad");
+});
+
+// ---- claim a house founded before accounts (once)
+async function showClaim(claim) {
+  show("claim"); $("claimForm").hidden = true; say($("clMsg"), "");
+  const r = await api("auth/claim-info", { claim });
+  if (!r.ok) { $("clWho").innerHTML = esc(r.error); say($("clMsg"), ""); $("clMsg").innerHTML = `<a href="./play.html" style="color:var(--gold)">Sign in instead</a>`; return; }
+  $("clWho").innerHTML = `<b>${r.house && r.house.name ? `House ${esc(r.house.name)}` : "Your house"}</b>${r.house && r.house.hold ? ` at ${esc(r.house.hold)}` : ""} is waiting for its lord.<small>Choose the name and password you will sign in with from now on. This link works once.</small>`;
+  $("claimForm").hidden = false; $("clName").value = r.suggested || ""; $("clName").focus(); $("clName").select();
+  $("claimForm").onsubmit = async (e) => {
+    e.preventDefault(); const f = $("claimForm"), name = $("clName").value.trim(), password = $("clPass").value;
+    if (name.length < 2) { mark(f, "name"); return say($("clMsg"), "Choose a name of at least 2 letters.", "bad"); }
+    if (password.length < 6) { mark(f, "password"); return say($("clMsg"), "The password needs at least 6 characters.", "bad"); }
+    if (password !== $("clPass2").value) { $("clPass2").setAttribute("aria-invalid", "true"); $("clPass2").focus(); return say($("clMsg"), "The two passwords are not the same.", "bad"); }
+    busy(f, true); const r2 = await api("auth/claim", { claim, name, password }); busy(f, false);
+    if (r2.ok) { history.replaceState(null, "", location.pathname); return signedIn(r2); }
+    mark(f, r2.field); say($("clMsg"), r2.error || "That did not work.", "bad");
+  };
+}
+
+for (const b of document.querySelectorAll(".mode[data-go]")) b.addEventListener("click", () => { location.href = b.dataset.go; });
+$("m-realm").addEventListener("click", () => { if (store.get()) showMe(); else showAuth("in"); });
+
+const params = new URLSearchParams(location.search);
+if (params.get("claim")) showClaim(params.get("claim"));
+else if (params.has("signedout")) { history.replaceState(null, "", location.pathname); showAuth("in", "Signed out.", "good"); }
+else if (params.has("enter") && store.get()) showMe().then((r) => { if (r) enter(); }); // (an attack notification's tap: straight back in)
+else if (params.has("realm") || params.has("t") || params.has("switch")) { history.replaceState(null, "", location.pathname); if (store.get()) showMe(); else showAuth("in", params.has("t") ? "Invite codes are gone: everyone has their own account now. Sign in, or create yours." : ""); }
+else show("menu"); // the app opens on the mode choice
+</script>
+</body>
+</html>

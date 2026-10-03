@@ -1,0 +1,10 @@
+{
+ "name": "planks",
+ "tile_m": 2.0,
+ "res": 1024,
+ "avg_srgb": "#725f4d",
+ "rough_mean": 0.823,
+ "relief_m": 0.008,
+ "seam": 0.701,
+ "notes": "oak boards along U, 17-30 cm wide"
+}

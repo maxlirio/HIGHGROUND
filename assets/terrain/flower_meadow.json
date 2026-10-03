@@ -1,0 +1,29 @@
+{
+  "name": "flower_meadow",
+  "tile_m": 12.0,
+  "res": 1024,
+  "avg_srgb": "#6d7340",
+  "avg_linear": [
+    0.1535,
+    0.1711,
+    0.0511
+  ],
+  "height_range_m": 0.584,
+  "height_min_m": -0.0382,
+  "rough_mean": 0.797,
+  "normal_boost": 0.5,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.084,
+    "height": 0.979,
+    "rough": 1.063
+  },
+  "notes": "Hay meadow in flower: buttercup, ox-eye daisy, red clover, knapweed, a little cornflower, in drifts.",
+  "displace_m": 0.0,
+  "aliases": [
+    "hay_meadow",
+    "wildflower_meadow"
+  ],
+  "macro_hint": "tile holds <=3 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "A-vegetated"
+}

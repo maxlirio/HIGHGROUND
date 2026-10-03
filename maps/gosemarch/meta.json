@@ -1,0 +1,451 @@
+{
+ "name": "The Gose March",
+ "map_id": "gosemarch",
+ "generator": {
+  "script": "tools/map/make_map.py",
+  "seed": 23,
+  "archetype": "march",
+  "relief": "bold"
+ },
+ "size_m": 4000.0,
+ "res": 1025,
+ "cell_m": 3.90625,
+ "origin": "SW corner; +x east, +y north, metres; z up (metres above datum)",
+ "height_f32_row_order": "row 0 = SOUTH edge (y=0); index = j*res + i, x=i*cell, y=j*cell",
+ "png_row_order": "row 0 = NORTH edge (north-up images)",
+ "height_min_m": 43.18,
+ "height_max_m": 356.82,
+ "sea_level_m": null,
+ "water": {
+  "datum_note": "no sea on this map; water surface = height + water depth",
+  "river_surface_m": {
+   "enters": 91.0,
+   "exits": 45.0
+  },
+  "mere_level_m": 116.91
+ },
+ "layers": {
+  "height.f32": "float32 LE terrain/bed height (m), south-first rows",
+  "water.f32": "float32 LE water depth (m), south-first rows (js/sim/map.js loads this)",
+  "surface.u8": "uint8 surface id (index into surfaceKeys), south-first rows, res x res",
+  "canopy.u8": "uint8 canopy / tall-vegetation height in metres above ground, south-first rows",
+  "vegetation.json": "tree & shrub instances {asset,x,y,rot,scale} in world metres"
+ },
+ "stats": {
+  "land_pits_filled": 12808,
+  "residual_pits": 0,
+  "max_upstream_area_km2_onmap": 10.76
+ },
+ "surfaceKeys": [
+  "short_meadow",
+  "tall_grass",
+  "flower_meadow",
+  "pasture",
+  "water_meadow",
+  "heath_heather",
+  "moorland",
+  "gorse_scrub",
+  "bracken",
+  "fallow",
+  "ploughed_field",
+  "standing_wheat",
+  "standing_barley",
+  "standing_oats_beans",
+  "stubble",
+  "orchard",
+  "kitchen_garden",
+  "open_forest",
+  "dense_forest",
+  "pine_forest",
+  "coppice",
+  "bramble_thicket",
+  "hedgerow",
+  "alder_carr",
+  "deadfall_clearing",
+  "bare_earth",
+  "dirt_track",
+  "village_street",
+  "trampled_ground",
+  "mud",
+  "clay_heavy",
+  "peat_bog",
+  "marsh",
+  "reed_bed_fen",
+  "shallow_ford",
+  "stream_bed",
+  "deep_water",
+  "riverbank_shingle",
+  "gravel",
+  "chalk_downland",
+  "limestone_pavement",
+  "scree",
+  "cliff_rock",
+  "rock_slab",
+  "boulder_field",
+  "quarry_floor",
+  "ruins_rubble"
+ ],
+ "landuse": {
+  "generator": "tools/map/make_map.py",
+  "seed": 23,
+  "season": "late summer (harvest)",
+  "coverage_pct": {
+   "pasture": 17.74,
+   "open_forest": 10.21,
+   "fallow": 6.81,
+   "coppice": 6.71,
+   "dense_forest": 6.57,
+   "short_meadow": 4.68,
+   "standing_oats_beans": 4.01,
+   "bracken": 3.95,
+   "flower_meadow": 3.89,
+   "marsh": 3.27,
+   "standing_barley": 3.2,
+   "heath_heather": 3.13,
+   "standing_wheat": 2.98,
+   "hedgerow": 2.49,
+   "tall_grass": 2.14,
+   "bramble_thicket": 2.12,
+   "stubble": 1.83,
+   "ploughed_field": 1.67,
+   "water_meadow": 1.54,
+   "reed_bed_fen": 1.45,
+   "alder_carr": 1.22,
+   "deep_water": 1.21,
+   "chalk_downland": 1.18,
+   "pine_forest": 0.96,
+   "gorse_scrub": 0.78,
+   "moorland": 0.75,
+   "rock_slab": 0.56,
+   "kitchen_garden": 0.4,
+   "trampled_ground": 0.38,
+   "dirt_track": 0.37,
+   "scree": 0.34,
+   "boulder_field": 0.33,
+   "orchard": 0.19,
+   "shallow_ford": 0.16,
+   "stream_bed": 0.12,
+   "limestone_pavement": 0.11,
+   "deadfall_clearing": 0.1,
+   "mud": 0.09,
+   "peat_bog": 0.09,
+   "cliff_rock": 0.09,
+   "riverbank_shingle": 0.06,
+   "quarry_floor": 0.05,
+   "village_street": 0.03,
+   "clay_heavy": 0.01,
+   "gravel": 0.01,
+   "bare_earth": 0.0,
+   "ruins_rubble": 0.0
+  },
+  "vegetation_instances": 61362,
+  "settlements_used": [
+   "Oakwell",
+   "Whitthorpe",
+   "Crakebury",
+   "Grimdon",
+   "Blackwell",
+   "Crakeham",
+   "Stan Crag Keep (ruin)",
+   "Wayside Chapel",
+   "Gallows at the Gap"
+  ],
+  "roads_used": 25
+ },
+ "features": [
+  {
+   "name": "Oakwell (blue town)",
+   "type": "town_site",
+   "xy_m": [
+    2894.8,
+    765.9
+   ],
+   "grid_ij": [
+    741,
+    196
+   ],
+   "z_m": 87.9,
+   "note": "Blue home ground: a flat dry rise with its own farmland."
+  },
+  {
+   "name": "Oakwell farmland",
+   "type": "farmland",
+   "xy_m": [
+    2650.3,
+    691.2
+   ],
+   "grid_ij": [
+    678,
+    177
+   ],
+   "z_m": 83.5,
+   "note": "Rolling fields around Oakwell."
+  },
+  {
+   "name": "Whitthorpe (red town)",
+   "type": "town_site",
+   "xy_m": [
+    769.3,
+    3054.4
+   ],
+   "grid_ij": [
+    197,
+    782
+   ],
+   "z_m": 152.5,
+   "note": "Red home ground: a flat dry rise with its own farmland."
+  },
+  {
+   "name": "Whitthorpe farmland",
+   "type": "farmland",
+   "xy_m": [
+    477.9,
+    2946.8
+   ],
+   "grid_ij": [
+    122,
+    754
+   ],
+   "z_m": 151.8,
+   "note": "Rolling fields around Whitthorpe."
+  },
+  {
+   "name": "River Gose",
+   "type": "river",
+   "xy_m": [
+    2471.4,
+    2670.0
+   ],
+   "grid_ij": [
+    633,
+    684
+   ],
+   "z_m": 72.7,
+   "note": "Unfordable except at the fords; the water is the front line."
+  },
+  {
+   "name": "Hob's Ford",
+   "type": "ford",
+   "xy_m": [
+    2293.7,
+    2979.2
+   ],
+   "grid_ij": [
+    587,
+    763
+   ],
+   "z_m": 78.0,
+   "note": "Wide gravel riffle ~0.4 m deep; a fighting crossing."
+  },
+  {
+   "name": "Stane Ford",
+   "type": "ford",
+   "xy_m": [
+    2245.7,
+    1361.8
+   ],
+   "grid_ij": [
+    575,
+    349
+   ],
+   "z_m": 59.0,
+   "note": "Wide gravel riffle ~0.4 m deep; a fighting crossing."
+  },
+  {
+   "name": "Gose Bridge site",
+   "type": "bridge_site",
+   "xy_m": [
+    2545.3,
+    1921.8
+   ],
+   "grid_ij": [
+    652,
+    492
+   ],
+   "z_m": 69.5,
+   "note": "Narrow deep reach with firm raised banks: the place to bridge."
+  },
+  {
+   "name": "Stan Crag",
+   "type": "rocky_upland",
+   "xy_m": [
+    3578.1,
+    2878.9
+   ],
+   "grid_ij": [
+    916,
+    737
+   ],
+   "z_m": 356.8,
+   "note": "Rocky upland with crags and scree: slow going, superb observation."
+  },
+  {
+   "name": "Lang Howe",
+   "type": "ridge",
+   "xy_m": [
+    3601.6,
+    2691.4
+   ],
+   "grid_ij": [
+    922,
+    689
+   ],
+   "z_m": 319.0,
+   "note": "Dominant ridge: a steep forward face and a long reverse slope of dead ground."
+  },
+  {
+   "name": "Sel Crag",
+   "type": "ridge",
+   "xy_m": [
+    1406.2,
+    2316.4
+   ],
+   "grid_ij": [
+    360,
+    593
+   ],
+   "z_m": 238.6,
+   "note": "Dominant ridge: a steep forward face and a long reverse slope of dead ground."
+  },
+  {
+   "name": "Hazel Pike Gap",
+   "type": "defile",
+   "xy_m": [
+    917.9,
+    877.4
+   ],
+   "grid_ij": [
+    235,
+    225
+   ],
+   "z_m": 81.8,
+   "note": "Narrow pass between two steep hills: a column is trapped; a few can hold it."
+  },
+  {
+   "name": "Red Crag",
+   "type": "hill",
+   "xy_m": [
+    1132.8,
+    1105.5
+   ],
+   "grid_ij": [
+    290,
+    283
+   ],
+   "z_m": 181.8,
+   "note": "A jaw of the pass; steep inner face."
+  },
+  {
+   "name": "Hol Tor",
+   "type": "hill",
+   "xy_m": [
+    496.1,
+    878.9
+   ],
+   "grid_ij": [
+    127,
+    225
+   ],
+   "z_m": 188.3,
+   "note": "A jaw of the pass; steep inner face."
+  },
+  {
+   "name": "Har Mere",
+   "type": "lake",
+   "xy_m": [
+    1718.2,
+    2076.5
+   ],
+   "grid_ij": [
+    440,
+    532
+   ],
+   "z_m": 113.1,
+   "note": "Lake, level 116.91 m: anchors a flank, impassable."
+  },
+  {
+   "name": "Red Brook",
+   "type": "gully",
+   "xy_m": [
+    2262.1,
+    1867.0
+   ],
+   "grid_ij": [
+    579,
+    478
+   ],
+   "z_m": 64.6,
+   "note": "Stream gully draining the mere: covered route and obstacle."
+  },
+  {
+   "name": "The Moss",
+   "type": "marsh",
+   "xy_m": [
+    2058.6,
+    3160.2
+   ],
+   "grid_ij": [
+    527,
+    809
+   ],
+   "z_m": 80.0,
+   "note": "Floodplain marsh: infantry wade, cavalry and carts bog down."
+  },
+  {
+   "name": "The Open Field",
+   "type": "open_plain",
+   "xy_m": [
+    3158.1,
+    553.6
+   ],
+   "grid_ij": [
+    808,
+    142
+   ],
+   "z_m": 82.6,
+   "note": "Long gentle open plain: cavalry ground."
+  },
+  {
+   "name": "Ket Brook",
+   "type": "wooded_valley",
+   "xy_m": [
+    2617.7,
+    2774.4
+   ],
+   "grid_ij": [
+    670,
+    710
+   ],
+   "z_m": 76.1,
+   "note": "Tributary valley: a covered approach."
+  },
+  {
+   "name": "Grim Brook",
+   "type": "wooded_valley",
+   "xy_m": [
+    1574.1,
+    631.6
+   ],
+   "grid_ij": [
+    403,
+    162
+   ],
+   "z_m": 54.4,
+   "note": "Tributary valley: a covered approach."
+  },
+  {
+   "name": "Bir Burn",
+   "type": "wooded_valley",
+   "xy_m": [
+    2601.8,
+    3310.1
+   ],
+   "grid_ij": [
+    666,
+    847
+   ],
+   "z_m": 94.3,
+   "note": "Tributary valley: a covered approach."
+  }
+ ]
+}

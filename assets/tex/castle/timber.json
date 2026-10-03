@@ -1,0 +1,10 @@
+{
+ "name": "timber",
+ "tile_m": 2.0,
+ "res": 1024,
+ "avg_srgb": "#6f5a42",
+ "rough_mean": 0.84,
+ "relief_m": 0.0151,
+ "seam": 1.071,
+ "notes": "hewn oak, grain along U"
+}

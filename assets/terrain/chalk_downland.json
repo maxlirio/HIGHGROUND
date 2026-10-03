@@ -1,0 +1,27 @@
+{
+  "name": "chalk_downland",
+  "tile_m": 6.0,
+  "res": 1024,
+  "avg_srgb": "#77794f",
+  "avg_linear": [
+    0.185,
+    0.1905,
+    0.0789
+  ],
+  "height_range_m": 0.176,
+  "height_min_m": -0.083,
+  "rough_mean": 0.861,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.111,
+    "height": 1.114,
+    "rough": 1.149
+  },
+  "notes": "Chalk downland: thin short sheep-grazed turf with white chalk showing through in scars, rabbit scrapes and sheep-tracks; black flint nodules with white cortex.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "chalk_downland"
+  ]
+}

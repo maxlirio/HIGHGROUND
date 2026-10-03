@@ -1,0 +1,30 @@
+{
+  "name": "garden_plots",
+  "tile_m": 16.0,
+  "res": 1024,
+  "avg_srgb": "#555336",
+  "avg_linear": [
+    0.0906,
+    0.0854,
+    0.0375
+  ],
+  "height_range_m": 1.071,
+  "height_min_m": -0.0602,
+  "rough_mean": 0.856,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.089,
+    "height": 0.915,
+    "rough": 1.675
+  },
+  "notes": "Cottage garden plots: beds of cabbages, leeks/onions, beans, a dug bed, divided by trodden paths with wattle edging.",
+  "displace_m": 0.0,
+  "aliases": [
+    "gardens",
+    "garden",
+    "vegetable_garden"
+  ],
+  "macro_hint": "tile holds <=3 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "A-vegetated"
+}
