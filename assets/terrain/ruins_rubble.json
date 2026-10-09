@@ -1,0 +1,27 @@
+{
+  "name": "ruins_rubble",
+  "tile_m": 6.0,
+  "res": 1024,
+  "avg_srgb": "#807360",
+  "avg_linear": [
+    0.2168,
+    0.1709,
+    0.1172
+  ],
+  "height_range_m": 0.9426,
+  "height_min_m": -0.3318,
+  "rough_mean": 0.859,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.167,
+    "height": 1.612,
+    "rough": 1.199
+  },
+  "notes": "Rubble / ruins ground: broken dressed stone, mortar lumps and lime dust, shattered roof tiles, charred timber, weeds pushing through. Cover, bad footing, dig-in easy.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "ruins_rubble"
+  ]
+}

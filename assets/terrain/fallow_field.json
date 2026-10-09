@@ -1,0 +1,28 @@
+{
+  "name": "fallow_field",
+  "tile_m": 16.0,
+  "res": 1024,
+  "avg_srgb": "#686838",
+  "avg_linear": [
+    0.1389,
+    0.1385,
+    0.0389
+  ],
+  "height_range_m": 0.6496,
+  "height_min_m": -0.0468,
+  "rough_mean": 0.837,
+  "normal_boost": 0.5,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 0.93,
+    "height": 0.974,
+    "rough": 0.926
+  },
+  "notes": "Fallow field: weedy patchy regrowth over old furrow traces, docks, thistles, bare patches.",
+  "displace_m": 0.0,
+  "aliases": [
+    "fallow"
+  ],
+  "macro_hint": "tile holds <=3 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "A-vegetated"
+}

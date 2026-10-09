@@ -1,0 +1,27 @@
+{
+  "name": "dunes",
+  "tile_m": 8.0,
+  "res": 1024,
+  "avg_srgb": "#cbb992",
+  "avg_linear": [
+    0.5965,
+    0.4827,
+    0.2881
+  ],
+  "height_range_m": 1.0681,
+  "height_min_m": -0.3433,
+  "rough_mean": 0.919,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.078,
+    "height": 2.158,
+    "rough": 3.252
+  },
+  "notes": "Coastal dunes: large sinuous wind-ripple field over dune swell, marram-grass clumps on the crests, bare slip faces. Tile the swell with the terrain mesh; this holds ripples + grass.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "dunes"
+  ]
+}

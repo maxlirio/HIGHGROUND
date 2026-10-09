@@ -1,0 +1,31 @@
+{
+  "name": "dirt_track",
+  "tile_m": 12.0,
+  "res": 1024,
+  "avg_srgb": "#636935",
+  "avg_linear": [
+    0.1253,
+    0.1405,
+    0.036
+  ],
+  "height_range_m": 0.3512,
+  "height_min_m": -0.1781,
+  "rough_mean": 0.84,
+  "normal_boost": 0.7,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.202,
+    "height": 0.995,
+    "rough": 1.176
+  },
+  "notes": "Cart track: two wheel ruts (1.4 m gauge) along V, grassy crown, trodden centre, grass verges, damp rut bottoms. UV V = track direction; the track sits in the middle 4 m of the tile's U.",
+  "displace_m": 0.12,
+  "aliases": [
+    "track",
+    "dirt_road",
+    "cart_track",
+    "road_dirt"
+  ],
+  "macro_hint": "tile holds <=3 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "A-vegetated"
+}

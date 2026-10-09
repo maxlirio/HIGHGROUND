@@ -1,0 +1,29 @@
+{
+  "name": "cliff_rock",
+  "tile_m": 8.0,
+  "res": 1024,
+  "avg_srgb": "#7c7970",
+  "avg_linear": [
+    0.2008,
+    0.1927,
+    0.1624
+  ],
+  "height_range_m": 0.9911,
+  "height_min_m": -0.4105,
+  "rough_mean": 0.8,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.102,
+    "height": 1.076,
+    "rough": 0.99
+  },
+  "notes": "Vertical cliff rock for TRIPLANAR on steep slopes: image V = world up. Tall joint blocks, horizontal bedding ledges, dark water-streaks running down, sparse lichen, no turf.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "cliff_rock"
+  ],
+  "projection": "triplanar_side",
+  "v_axis": "world_up"
+}

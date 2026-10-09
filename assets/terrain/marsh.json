@@ -1,0 +1,28 @@
+{
+  "name": "marsh",
+  "tile_m": 8.0,
+  "res": 1024,
+  "avg_srgb": "#63653f",
+  "avg_linear": [
+    0.1244,
+    0.1293,
+    0.0495
+  ],
+  "height_range_m": 0.6035,
+  "height_min_m": 0.0291,
+  "rough_mean": 0.545,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 0.828,
+    "height": 0.774,
+    "rough": 0.973
+  },
+  "notes": "Marsh: sedge/rush tussocks (0.3-0.7 m clumps) standing in shallow still water (~35% of the area), muddy margins, floating duckweed rafts.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "marsh",
+    "salt_marsh"
+  ]
+}

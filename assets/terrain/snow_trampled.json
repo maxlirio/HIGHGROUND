@@ -1,0 +1,28 @@
+{
+  "name": "snow_trampled",
+  "tile_m": 6.0,
+  "res": 1024,
+  "avg_srgb": "#b4b2b1",
+  "avg_linear": [
+    0.4565,
+    0.4471,
+    0.437
+  ],
+  "height_range_m": 0.3712,
+  "height_min_m": -0.2092,
+  "rough_mean": 0.482,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 0.928,
+    "height": 0.933,
+    "rough": 0.838
+  },
+  "notes": "Trampled snow: overlapping boot/hoof prints in walking trails, compacted glazed lanes, grey-brown slush and mud churned up in the deepest prints.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "slush",
+    "snow_light"
+  ]
+}

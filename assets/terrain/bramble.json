@@ -1,0 +1,30 @@
+{
+  "name": "bramble",
+  "tile_m": 10.0,
+  "res": 1024,
+  "avg_srgb": "#404326",
+  "avg_linear": [
+    0.0516,
+    0.0559,
+    0.0191
+  ],
+  "height_range_m": 1.1263,
+  "height_min_m": -0.0456,
+  "rough_mean": 0.672,
+  "normal_boost": 0.35,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.071,
+    "height": 1.121,
+    "rough": 1.111
+  },
+  "notes": "Bramble thicket: mounded compound leaves, arching purple-red canes, dead leaves, fruit.",
+  "displace_m": 0.0,
+  "aliases": [
+    "brambles",
+    "bramble_thicket",
+    "thicket"
+  ],
+  "macro_hint": "tile holds <=3 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "A-vegetated"
+}

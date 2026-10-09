@@ -1,0 +1,29 @@
+{
+  "name": "vineyard",
+  "tile_m": 12.0,
+  "res": 1024,
+  "avg_srgb": "#736e3f",
+  "avg_linear": [
+    0.1708,
+    0.1569,
+    0.049
+  ],
+  "height_range_m": 0.2255,
+  "height_min_m": -0.0581,
+  "rough_mean": 0.85,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.111,
+    "height": 1.601,
+    "rough": 1.07
+  },
+  "notes": "Vineyard floor: 6 rows per tile (2 m spacing) of hoed stony soil under the vines, grassy alleys with a trodden line. Vines themselves are 3D. UV V = row direction.",
+  "displace_m": 0.0,
+  "aliases": [
+    "vineyard_rows",
+    "vines"
+  ],
+  "macro_hint": "tile holds <=3 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "A-vegetated"
+}

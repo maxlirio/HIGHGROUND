@@ -1,0 +1,30 @@
+{
+  "name": "bare_earth",
+  "tile_m": 8.0,
+  "res": 1024,
+  "avg_srgb": "#564734",
+  "avg_linear": [
+    0.094,
+    0.0626,
+    0.0342
+  ],
+  "height_range_m": 0.096,
+  "height_min_m": -0.0492,
+  "rough_mean": 0.89,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.013,
+    "height": 0.975,
+    "rough": 1.178
+  },
+  "notes": "Bare earth: loamy soil, crumbs, small stones, faint cracking.",
+  "displace_m": 0.09598484635353088,
+  "aliases": [
+    "dirt",
+    "soil",
+    "earth"
+  ],
+  "macro_hint": "tile holds <=3 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "A-vegetated"
+}

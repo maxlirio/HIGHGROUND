@@ -1,0 +1,27 @@
+{
+  "name": "beach_wet",
+  "tile_m": 6.0,
+  "res": 1024,
+  "avg_srgb": "#8b7d62",
+  "avg_linear": [
+    0.2566,
+    0.2049,
+    0.122
+  ],
+  "height_range_m": 0.102,
+  "height_min_m": -0.0509,
+  "rough_mean": 0.609,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.016,
+    "height": 1.041,
+    "rough": 1.488
+  },
+  "notes": "Beach (foreshore): damp compacted sand with backwash swash-marks, strand-line of dark wrack (seaweed), shells and pebbles, glossy wet film in runnels.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "beach_wet"
+  ]
+}

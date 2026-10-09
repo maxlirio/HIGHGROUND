@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get HIGHGROUND</title>
+<style>
+  /* Layout: one column — the download for THIS computer first, then its three steps, the other computer's below */
+  :root { --ground: #120f0b; --panel: #1c1712; --edge: #5b4a2c; --gold: #d9ae5a; --ink: #eee5d2; --dim: #a79b86;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; --mono: ui-monospace, Menlo, Consolas, monospace; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: radial-gradient(ellipse at 50% 0%, #2a2217 0%, var(--ground) 60%) fixed; color: var(--ink); font: 18px/1.55 var(--serif); padding-inline: 18px; padding-block: 48px 64px; }
+  main { max-width: 640px; margin: 0 auto; display: grid; gap: 34px; }
+  header { text-align: center; display: grid; gap: 6px; }
+  h1 { margin: 0; font-size: clamp(32px, 8vw, 50px); letter-spacing: .32em; padding-left: .32em; color: var(--gold); }
+  .sub { margin: 0; letter-spacing: .2em; font-size: 13px; text-transform: uppercase; color: var(--dim); }
+  .lede { margin: 12px 0 0; color: var(--dim); text-wrap: balance; }
+  section { background: var(--panel); border: 1px solid var(--edge); padding: 24px; display: grid; gap: 16px; }
+  h2 { margin: 0; font-size: 22px; color: var(--gold); letter-spacing: .04em; }
+  .dl { display: inline-block; justify-self: start; font: 600 19px var(--serif); padding: 13px 22px; background: #3a2e1a; color: var(--gold); border: 1px solid var(--gold); text-decoration: none; }
+  .dl:hover { background: #4a3b20; }
+  .size { color: var(--dim); font-size: 15px; margin-left: 10px; }
+  ol { margin: 0; padding-left: 1.3em; display: grid; gap: 10px; }
+  li::marker { color: var(--gold); font-weight: 700; }
+  b { color: var(--ink); } .note { color: var(--dim); font-size: 16px; margin: 0; }
+  kbd, code { font: 15px var(--mono); background: #0d0b08; border: 1px solid var(--edge); padding: 1px 6px; }
+  a { color: var(--gold); } a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  .other { order: 2; } .mine { order: 1; } #lin { order: 3; } #lin.mine { order: 1; }
+  footer { order: 3; color: var(--dim); font-size: 15px; text-align: center; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>HIGHGROUND</h1>
+    <p class="sub">The Realm</p>
+    <p class="lede">Our family's kingdom. It runs day and night, and your house holds even while you're away. You need the game and the invite code you were sent.</p>
+  </header>
+
+  <section id="win">
+    <h2>Windows</h2>
+    <a class="dl" href="HIGHGROUND-Windows.exe" download>Download for Windows</a>
+    <ol>
+      <li>Open <b>HIGHGROUND-Windows.exe</b> from your Downloads.</li>
+      <li>If Windows says <b>"Windows protected your PC"</b>, click <b>More info</b>, then <b>Run anyway</b>. (The game isn't from a big publisher, so Windows doesn't recognise it yet.) If your browser asks whether to keep the file, choose <b>Keep</b>.</li>
+      <li>Paste your invite code and click <b>Enter the realm</b>. That's it. Next time, open <b>HIGHGROUND</b> from your desktop or Start menu.</li>
+    </ol>
+  </section>
+
+  <section id="mac">
+    <h2>Mac</h2>
+    <a class="dl" href="HIGHGROUND-Mac.zip" download>Download for Mac</a>
+    <ol>
+      <li>Open the download so it unzips, then drag <b>HIGHGROUND</b> into your <b>Applications</b> folder.</li>
+      <li>The first time, <b>right-click</b> HIGHGROUND and choose <b>Open</b>, then <b>Open</b> again. On newer Macs, if it only offers <b>Done</b> or <b>Move to Trash</b>, click <b>Done</b>, go to <b>System Settings → Privacy &amp; Security</b>, scroll down and click <b>Open Anyway</b>.</li>
+      <li>Paste your invite code and click <b>Enter the realm</b>. After that it opens like any other app.</li>
+    </ol>
+  </section>
+
+  <section id="lin" class="other">
+    <h2>Linux</h2>
+    <a class="dl" href="HIGHGROUND-Linux.tar.gz" download>Download for Linux</a>
+    <ol>
+      <li>Unpack the download, then run <code>./install.sh</code> in the HIGHGROUND folder (no root needed).</li>
+      <li>Open <b>HIGHGROUND</b> from your app menu, or run <code>highground</code> in a terminal. It opens in your own browser's app window (Chrome, Chromium, Brave or Edge give the best full-window result).</li>
+      <li>Paste your invite code and click <b>Enter the realm</b>. That's it.</li>
+    </ol>
+  </section>
+
+  <footer>
+    <p>No download? The game also runs in a web browser: <a href="/play.html">play in the browser</a>. The game updates itself; you never need to download it again.</p>
+  </footer>
+</main>
+<script>
+// this computer's download first
+const ua = navigator.platform || navigator.userAgent;
+const mac = /Mac/i.test(ua), win = /Win/i.test(ua), lin = !mac && !win && /Linux|X11/i.test(ua);
+const mine = mac ? "mac" : win ? "win" : lin ? "lin" : null;
+if (mine) for (const id of ["win", "mac", "lin"]) document.getElementById(id).className = id === mine ? "mine" : "other";
+</script>
+</body>
+</html>
