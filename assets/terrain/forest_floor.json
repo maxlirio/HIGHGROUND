@@ -1,0 +1,32 @@
+{
+  "name": "forest_floor",
+  "tile_m": 8.0,
+  "res": 1024,
+  "avg_srgb": "#614d32",
+  "avg_linear": [
+    0.1204,
+    0.0745,
+    0.0313
+  ],
+  "height_range_m": 0.2313,
+  "height_min_m": -0.0811,
+  "rough_mean": 0.779,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.149,
+    "height": 1.062,
+    "rough": 1.066
+  },
+  "notes": "Oak woodland floor: layered lobed oak leaves (tan/brown/grey-brown), twigs, acorns, moss flecks, seedlings.",
+  "displace_m": 0.0,
+  "aliases": [
+    "leaf_litter",
+    "forest_floor_oak",
+    "woodland_floor",
+    "deciduous_forest_floor",
+    "forest"
+  ],
+  "macro_hint": "tile holds <=3 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "A-vegetated"
+}

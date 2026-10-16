@@ -1,0 +1,30 @@
+{
+  "name": "pine_floor",
+  "tile_m": 8.0,
+  "res": 1024,
+  "avg_srgb": "#5d4e32",
+  "avg_linear": [
+    0.1084,
+    0.0768,
+    0.0318
+  ],
+  "height_range_m": 0.4976,
+  "height_min_m": -0.0817,
+  "rough_mean": 0.703,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.046,
+    "height": 0.988,
+    "rough": 1.032
+  },
+  "notes": "Pine forest floor: russet needle carpet, cones, twigs, bilberry and moss patches.",
+  "displace_m": 0.0,
+  "aliases": [
+    "pine_needles",
+    "pine_forest_floor",
+    "conifer_floor"
+  ],
+  "macro_hint": "tile holds <=3 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "A-vegetated"
+}

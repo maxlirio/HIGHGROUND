@@ -1,0 +1,29 @@
+{
+  "name": "ditch",
+  "tile_m": 4.0,
+  "res": 1024,
+  "avg_srgb": "#554331",
+  "avg_linear": [
+    0.0898,
+    0.056,
+    0.0302
+  ],
+  "height_range_m": 0.3506,
+  "height_min_m": -0.1696,
+  "rough_mean": 0.898,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.025,
+    "height": 0.979,
+    "rough": 1.015
+  },
+  "notes": "Earthworks / ditch spoil: freshly dug soil with flat spade-cut facets, clods, orange-grey subsoil clay streaks, stones and severed roots. Dig-in terrain for ditches, ramparts, graves.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "ditch",
+    "earth_rampart",
+    "earth_bank"
+  ]
+}

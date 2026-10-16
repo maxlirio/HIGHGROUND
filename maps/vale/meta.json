@@ -1,0 +1,490 @@
+{
+ "name": "Vale of Harrow",
+ "size_m": 4000.0,
+ "res": 1025,
+ "cell_m": 3.90625,
+ "origin": "SW corner; +x east, +y north, metres; z up (metres above datum)",
+ "height_f32_row_order": "row 0 = SOUTH edge (y=0); index = j*res + i, x=i*cell, y=j*cell",
+ "png_row_order": "row 0 = NORTH edge (north-up images)",
+ "height_min_m": 43.06,
+ "height_max_m": 194.32,
+ "height_png_scale": {
+  "min_m": 43.064,
+  "max_m": 194.322,
+  "note": "height = min + v/65535*(max-min)"
+ },
+ "sea_level_m": null,
+ "water": {
+  "datum_note": "no sea on this map; water surface = height + water depth",
+  "river_surface_m": {
+   "enters_west": 64.0,
+   "exits_south": 45.0,
+   "at_bridge": 53.82
+  },
+  "mere_level_m": 89.49,
+  "water_png_scale_m_per_unit": 0.05
+ },
+ "layers": {
+  "height.f32": "float32 LE terrain/bed height (m), south-first rows",
+  "water.f32": "float32 LE water depth (m), south-first rows (js/sim/map.js loads this)",
+  "height.png": "16-bit preview, north-up",
+  "water.png": "uint8 depth, 0.05 m per unit",
+  "marsh.png": "uint8 marsh intensity 0-255",
+  "river_flow.png": "uint8 log10 upstream area; 255 = main river channel",
+  "slope.png": "uint8 slope, 0.25 deg per unit",
+  "crest.png": "uint8: 255 topographic crest/ridgeline, 150 military crest",
+  "scree.png": "uint8 scree intensity",
+  "rock.png": "uint8 bare crag mask",
+  "surface.u8": "uint8 surface id (index into surfaceKeys), south-first rows, res x res",
+  "canopy.u8": "uint8 canopy / tall-vegetation height in metres above ground, south-first rows",
+  "vegetation.json": "tree & shrub instances {asset,x,y,rot,scale} in world metres"
+ },
+ "stats": {
+  "land_pits_filled": 3778,
+  "residual_pits": 0,
+  "max_upstream_area_km2_onmap": 11.22
+ },
+ "features": [
+  {
+   "name": "Ashby (blue town)",
+   "type": "town_site",
+   "xy_m": [
+    820.0,
+    800.0
+   ],
+   "grid_ij": [
+    210,
+    205
+   ],
+   "z_m": 102.4,
+   "note": "Blue home plateau: flat, dry, 3 approaches; SW corner has only farmland behind it."
+  },
+  {
+   "name": "Rookham (red town)",
+   "type": "town_site",
+   "xy_m": [
+    3300.0,
+    3250.0
+   ],
+   "grid_ij": [
+    845,
+    832
+   ],
+   "z_m": 119.8,
+   "note": "Red home plateau on higher ground; the Gallows Gap and the Knap screen its southern approaches."
+  },
+  {
+   "name": "Harrow Ridge",
+   "type": "ridge",
+   "xy_m": [
+    2097.7,
+    777.3
+   ],
+   "grid_ij": [
+    537,
+    199
+   ],
+   "z_m": 159.8,
+   "note": "Dominant ridge: steep NW forward face over the bridge, long reverse slope SE hides troops from the red bank."
+  },
+  {
+   "name": "Harrow Ridge reverse slope",
+   "type": "reverse_slope",
+   "xy_m": [
+    2427.7,
+    477.3
+   ],
+   "grid_ij": [
+    621,
+    122
+   ],
+   "z_m": 92.2,
+   "note": "Dead ground to anyone north of the river: form up and reserve here unseen."
+  },
+  {
+   "name": "Tor Knap (ruin)",
+   "type": "motte_hill",
+   "xy_m": [
+    2650.0,
+    2470.0
+   ],
+   "grid_ij": [
+    678,
+    632
+   ],
+   "z_m": 117.3,
+   "note": "Steep isolated hill with a flat summit and ruin; commands the bridge and marsh, hard to storm, easy to isolate."
+  },
+  {
+   "name": "River Harrow",
+   "type": "river",
+   "xy_m": [
+    400,
+    3180
+   ],
+   "grid_ij": [
+    102,
+    814
+   ],
+   "z_m": 60.7,
+   "note": "Unfordable (1.7-2.3 m) except at the fords; flows W edge to S edge."
+  },
+  {
+   "name": "Hob's Ford",
+   "type": "ford",
+   "xy_m": [
+    850.0,
+    2860.0
+   ],
+   "grid_ij": [
+    218,
+    732
+   ],
+   "z_m": 59.5,
+   "note": "Wide gravel riffle ~0.4 m deep; western crossing, overlooked by Blackfell scree."
+  },
+  {
+   "name": "Stane Ford",
+   "type": "ford",
+   "xy_m": [
+    3050.0,
+    1360.0
+   ],
+   "grid_ij": [
+    781,
+    348
+   ],
+   "z_m": 49.2,
+   "note": "Eastern gravel riffle ~0.4 m deep; links Harrow Field to the Gallows Gap."
+  },
+  {
+   "name": "Harrow Bridge site",
+   "type": "bridge_site",
+   "xy_m": [
+    2100.0,
+    2000.0
+   ],
+   "grid_ij": [
+    538,
+    512
+   ],
+   "z_m": 51.2,
+   "note": "Narrow deep reach with firm raised banks: the only place to bridge; the centre of the map."
+  },
+  {
+   "name": "Harrow Moss",
+   "type": "marsh",
+   "xy_m": [
+    2640,
+    1720
+   ],
+   "grid_ij": [
+    676,
+    440
+   ],
+   "z_m": 51.3,
+   "note": "Floodplain marsh inside the bend below the bridge: infantry wade, cavalry and guns bog down."
+  },
+  {
+   "name": "Gallows Gap",
+   "type": "defile",
+   "xy_m": [
+    3345,
+    1950
+   ],
+   "grid_ij": [
+    856,
+    499
+   ],
+   "z_m": 68.1,
+   "note": "Narrow pass between Brant Hill and Cold Knowe: a column is trapped; a few can hold it."
+  },
+  {
+   "name": "Brant Hill",
+   "type": "hill",
+   "xy_m": [
+    3207.0,
+    2293.0
+   ],
+   "grid_ij": [
+    821,
+    587
+   ],
+   "z_m": 102.8,
+   "note": "West jaw of the Gap; steep inner face."
+  },
+  {
+   "name": "Cold Knowe",
+   "type": "hill",
+   "xy_m": [
+    3578.1,
+    1992.2
+   ],
+   "grid_ij": [
+    916,
+    510
+   ],
+   "z_m": 138.7,
+   "note": "East jaw of the Gap; steep inner face."
+  },
+  {
+   "name": "Harrow Field",
+   "type": "open_plain",
+   "xy_m": [
+    3080.0,
+    430.0
+   ],
+   "grid_ij": [
+    788,
+    110
+   ],
+   "z_m": 63.6,
+   "note": "Long gentle open plain, <3 deg: ideal cavalry ground behind the ridge's reverse slope."
+  },
+  {
+   "name": "Wychwood Bottom",
+   "type": "wooded_valley",
+   "xy_m": [
+    1210,
+    1150
+   ],
+   "grid_ij": [
+    310,
+    294
+   ],
+   "z_m": 75.6,
+   "note": "Steep-sided tributary valley (intended woodland): a covered approach from Ashby to Hob's Ford."
+  },
+  {
+   "name": "Crake Gill",
+   "type": "gully",
+   "xy_m": [
+    1880,
+    2700
+   ],
+   "grid_ij": [
+    481,
+    691
+   ],
+   "z_m": 56.5,
+   "note": "Deep narrow stream gully draining the mere: covered route and obstacle just upstream of the bridge."
+  },
+  {
+   "name": "Harrow Mere",
+   "type": "lake",
+   "xy_m": [
+    1950.0,
+    3330.0
+   ],
+   "grid_ij": [
+    499,
+    852
+   ],
+   "z_m": 81.4,
+   "note": "Lake, level 89.49 m, up to ~8 m deep: anchors a flank, impassable."
+  },
+  {
+   "name": "Blackfell",
+   "type": "rocky_upland",
+   "xy_m": [
+    656.2,
+    3835.9
+   ],
+   "grid_ij": [
+    168,
+    982
+   ],
+   "z_m": 194.3,
+   "note": "Rocky upland with crags and scree aprons: slow going, superb observation over the western river."
+  },
+  {
+   "name": "Holloway (sunken lane)",
+   "type": "sunken_lane",
+   "xy_m": [
+    1714.6,
+    1535.2
+   ],
+   "grid_ij": [
+    439,
+    393
+   ],
+   "z_m": 80.8,
+   "note": "Lane worn 3 m into the slope: ready-made trench and covered approach to the bridge."
+  },
+  {
+   "name": "Rook Beck",
+   "type": "stream_valley",
+   "xy_m": [
+    2960,
+    2600
+   ],
+   "grid_ij": [
+    758,
+    666
+   ],
+   "z_m": 82.3,
+   "note": "Shallow beck valley past Rookham to the river: a low covered line of approach toward the Knap."
+  },
+  {
+   "name": "Hanger Knoll",
+   "type": "wooded_knoll",
+   "xy_m": [
+    2560.0,
+    3560.0
+   ],
+   "grid_ij": [
+    655,
+    911
+   ],
+   "z_m": 116.8,
+   "note": "Small rounded knoll (intended woodland): observation post and screen west of Rookham."
+  },
+  {
+   "name": "Ashby farmland",
+   "type": "farmland",
+   "xy_m": [
+    1050,
+    450
+   ],
+   "grid_ij": [
+    269,
+    115
+   ],
+   "z_m": 81.7,
+   "note": "Rolling fields, hedge-scale undulation: partial cover for infantry."
+  },
+  {
+   "name": "Rookham farmland",
+   "type": "farmland",
+   "xy_m": [
+    3000,
+    3500
+   ],
+   "grid_ij": [
+    768,
+    896
+   ],
+   "z_m": 108.2,
+   "note": "Rolling fields around Rookham on a gentle south-facing slope."
+  }
+ ],
+ "surfaceKeys": [
+  "short_meadow",
+  "tall_grass",
+  "flower_meadow",
+  "pasture",
+  "water_meadow",
+  "heath_heather",
+  "moorland",
+  "gorse_scrub",
+  "bracken",
+  "fallow",
+  "ploughed_field",
+  "standing_wheat",
+  "standing_barley",
+  "standing_oats_beans",
+  "stubble",
+  "orchard",
+  "kitchen_garden",
+  "open_forest",
+  "dense_forest",
+  "pine_forest",
+  "coppice",
+  "bramble_thicket",
+  "hedgerow",
+  "alder_carr",
+  "deadfall_clearing",
+  "bare_earth",
+  "dirt_track",
+  "hollow_way",
+  "village_street",
+  "trampled_ground",
+  "mud",
+  "clay_heavy",
+  "peat_bog",
+  "marsh",
+  "reed_bed_fen",
+  "shallow_ford",
+  "stream_bed",
+  "deep_water",
+  "riverbank_shingle",
+  "gravel",
+  "chalk_downland",
+  "limestone_pavement",
+  "scree",
+  "cliff_rock",
+  "rock_slab",
+  "boulder_field",
+  "quarry_floor",
+  "ruins_rubble"
+ ],
+ "landuse": {
+  "generator": "tools/map/landuse_vale.py",
+  "seed": 1307,
+  "season": "late summer (harvest)",
+  "coverage_pct": {
+   "pasture": 21.85,
+   "open_forest": 6.79,
+   "fallow": 6.55,
+   "standing_wheat": 5.66,
+   "dense_forest": 5.45,
+   "standing_barley": 5.22,
+   "standing_oats_beans": 5.2,
+   "short_meadow": 4.76,
+   "flower_meadow": 3.84,
+   "marsh": 3.63,
+   "stubble": 3.38,
+   "coppice": 3.26,
+   "tall_grass": 2.75,
+   "heath_heather": 2.69,
+   "hedgerow": 2.49,
+   "water_meadow": 1.87,
+   "ploughed_field": 1.75,
+   "alder_carr": 1.74,
+   "bramble_thicket": 1.49,
+   "moorland": 1.44,
+   "bracken": 1.29,
+   "reed_bed_fen": 1.14,
+   "deep_water": 1.06,
+   "pine_forest": 0.62,
+   "kitchen_garden": 0.57,
+   "dirt_track": 0.57,
+   "trampled_ground": 0.48,
+   "gorse_scrub": 0.37,
+   "chalk_downland": 0.34,
+   "scree": 0.28,
+   "shallow_ford": 0.2,
+   "stream_bed": 0.2,
+   "boulder_field": 0.17,
+   "rock_slab": 0.14,
+   "deadfall_clearing": 0.13,
+   "mud": 0.1,
+   "quarry_floor": 0.1,
+   "orchard": 0.09,
+   "limestone_pavement": 0.09,
+   "peat_bog": 0.08,
+   "riverbank_shingle": 0.05,
+   "hollow_way": 0.03,
+   "clay_heavy": 0.03,
+   "village_street": 0.02,
+   "gravel": 0.01,
+   "ruins_rubble": 0.01,
+   "bare_earth": 0.0,
+   "cliff_rock": 0.0
+  },
+  "vegetation_instances": 49742,
+  "settlements_used": [
+   "Ashby",
+   "Rookham",
+   "Wychcote",
+   "Harrow Grange",
+   "Beckfoot",
+   "Hobsgarth",
+   "Crake Mill",
+   "Tor Knap Keep (ruin)",
+   "Gallows at the Gap",
+   "St Hob's Chapel"
+  ],
+  "roads_used": 28
+ }
+}

@@ -1,0 +1,10 @@
+{
+ "name": "debris",
+ "tile_m": 4.0,
+ "res": 1024,
+ "avg_srgb": "#9c927c",
+ "rough_mean": 0.9,
+ "relief_m": 0.2172,
+ "seam": 1.32,
+ "notes": "fallen masonry rubble"
+}

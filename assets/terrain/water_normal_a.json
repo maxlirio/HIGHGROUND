@@ -1,0 +1,42 @@
+{
+  "name": "water_normal_a",
+  "tile_m": 16.0,
+  "res": 1024,
+  "avg_srgb": "#2c3e3a",
+  "avg_linear": [
+    0.0253,
+    0.0481,
+    0.0423
+  ],
+  "height_range_m": 0.4181,
+  "height_min_m": -0.2085,
+  "rough_mean": 0.04,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.329,
+    "height": 0.947,
+    "rough": 0.0
+  },
+  "notes": "WATER NORMAL LAYER A (swell/wind waves 0.4-6 m). Use with water_normal_b: scroll A slowly along the flow (0.3-1.0 m/s river, 0.05-0.15 m/s lake) and B faster at ~35 deg to it; sum the normals (whiteout blend). Albedo = deep-body colour; reflections come from the shader.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "deep_water",
+    "moat"
+  ],
+  "water_role": "normal layer A (large)",
+  "colour_notes": {
+    "river_clear": "#34463e deep / #5a6a52 shallow over gravel",
+    "lake_deep": "#2a3a3e",
+    "pond_peaty": "#2e2820",
+    "marsh_standing": "#3a3a2a",
+    "flood_muddy": "#6b5a43 opaque (see flood_water)",
+    "absorption_linear_per_m": [
+      0.45,
+      0.12,
+      0.09
+    ],
+    "roughness": 0.03
+  }
+}

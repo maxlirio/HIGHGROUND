@@ -1,0 +1,27 @@
+{
+  "name": "sand",
+  "tile_m": 4.0,
+  "res": 1024,
+  "avg_srgb": "#c1ab84",
+  "avg_linear": [
+    0.5319,
+    0.4063,
+    0.2292
+  ],
+  "height_range_m": 0.1432,
+  "height_min_m": -0.0676,
+  "rough_mean": 0.9,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.017,
+    "height": 1.114,
+    "rough": 0.975
+  },
+  "notes": "Dry sand: fine wind ripples (~9 cm) in patches, heavy-mineral grit, a few pebbles and shell bits. Soft footing.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "sand"
+  ]
+}

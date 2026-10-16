@@ -1,0 +1,31 @@
+{
+  "name": "ploughed_field",
+  "tile_m": 12.0,
+  "res": 1024,
+  "avg_srgb": "#523f2b",
+  "avg_linear": [
+    0.0838,
+    0.0499,
+    0.0246
+  ],
+  "height_range_m": 0.3205,
+  "height_min_m": -0.0477,
+  "rough_mean": 0.872,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.021,
+    "height": 1.002,
+    "rough": 1.095
+  },
+  "notes": "Freshly ploughed strip: 33 mouldboard furrows per tile (~36 cm), real 16 cm relief, clods. UV V = furrow direction.",
+  "displace_m": 0.3204803168773651,
+  "aliases": [
+    "ploughed",
+    "plowed_field",
+    "plough",
+    "tilled"
+  ],
+  "macro_hint": "tile holds <=3 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "A-vegetated"
+}
