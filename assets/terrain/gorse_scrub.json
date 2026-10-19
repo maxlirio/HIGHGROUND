@@ -1,0 +1,30 @@
+{
+  "name": "gorse_scrub",
+  "tile_m": 12.0,
+  "res": 1024,
+  "avg_srgb": "#636435",
+  "avg_linear": [
+    0.1238,
+    0.1281,
+    0.0354
+  ],
+  "height_range_m": 2.0121,
+  "height_min_m": -0.0742,
+  "rough_mean": 0.824,
+  "normal_boost": 0.35,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.035,
+    "height": 1.179,
+    "rough": 0.974
+  },
+  "notes": "Gorse scrub: dark spiny gorse bushes speckled yellow, sandy bare ground, rough grass.",
+  "displace_m": 0.0,
+  "aliases": [
+    "scrub",
+    "gorse",
+    "scrubland"
+  ],
+  "macro_hint": "tile holds <=3 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "A-vegetated"
+}

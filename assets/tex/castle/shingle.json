@@ -1,0 +1,10 @@
+{
+ "name": "shingle",
+ "tile_m": 4.0,
+ "res": 1024,
+ "avg_srgb": "#7e7667",
+ "rough_mean": 0.88,
+ "relief_m": 0.0272,
+ "seam": 14.38,
+ "notes": "oak shingles ~13 cm exposure; V up-slope"
+}

@@ -1,0 +1,27 @@
+{
+  "name": "limestone_pavement",
+  "tile_m": 8.0,
+  "res": 1024,
+  "avg_srgb": "#989588",
+  "avg_linear": [
+    0.3154,
+    0.3023,
+    0.2451
+  ],
+  "height_range_m": 0.4921,
+  "height_min_m": -0.4316,
+  "rough_mean": 0.78,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.253,
+    "height": 1.569,
+    "rough": 1.29
+  },
+  "notes": "Carboniferous limestone pavement: clints (flat pale blocks ~0.6x1.5 m) cut by deep grykes along one dominant joint set + cross joints; solution pans, rillenkarren, lichen, ferns/grass in the grykes. Terrible footing for horses.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "limestone_pavement"
+  ]
+}

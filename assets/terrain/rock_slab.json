@@ -1,0 +1,28 @@
+{
+  "name": "rock_slab",
+  "tile_m": 8.0,
+  "res": 1024,
+  "avg_srgb": "#817e75",
+  "avg_linear": [
+    0.2184,
+    0.2099,
+    0.1778
+  ],
+  "height_range_m": 1.0471,
+  "height_min_m": -0.4717,
+  "rough_mean": 0.78,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.08,
+    "height": 1.205,
+    "rough": 0.993
+  },
+  "notes": "Granite outcrop / cliff top: benched sheet-jointed rock, big joint blocks + secondary cracks, crystal speckle, grey-green + orange lichen, moss in the joints. For steep slopes use cliff_rock triplanar.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "rock_slab",
+    "quarry_floor"
+  ]
+}

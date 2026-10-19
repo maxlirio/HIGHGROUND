@@ -1,0 +1,28 @@
+{
+  "name": "moorland",
+  "tile_m": 16.0,
+  "res": 1024,
+  "avg_srgb": "#7c7148",
+  "avg_linear": [
+    0.2021,
+    0.1637,
+    0.0642
+  ],
+  "height_range_m": 0.6587,
+  "height_min_m": -0.118,
+  "rough_mean": 0.852,
+  "normal_boost": 0.5,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.022,
+    "height": 1.053,
+    "rough": 1.016
+  },
+  "notes": "Upland moorland: tussocky moor-grass (tawny), rushes, patches of heather and sphagnum, dark peat.",
+  "displace_m": 0.0,
+  "aliases": [
+    "moor"
+  ],
+  "macro_hint": "tile holds <=3 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "A-vegetated"
+}

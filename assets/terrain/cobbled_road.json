@@ -1,0 +1,28 @@
+{
+  "name": "cobbled_road",
+  "tile_m": 4.0,
+  "res": 1024,
+  "avg_srgb": "#685f51",
+  "avg_linear": [
+    0.1389,
+    0.1132,
+    0.0817
+  ],
+  "height_range_m": 0.0886,
+  "height_min_m": -0.0227,
+  "rough_mean": 0.816,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.166,
+    "height": 1.413,
+    "rough": 1.305
+  },
+  "notes": "Cobbled road/street: rounded field cobbles 10-18 cm, packed with dirt and dung in the joints, polished wear on crowns, mud patches, a few missing setts.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "cobbled_road",
+    "village_street"
+  ]
+}

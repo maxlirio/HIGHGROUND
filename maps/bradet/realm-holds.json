@@ -1,0 +1,88 @@
+{
+ "map": "bradet",
+ "generator": "tools/map/realm_holds.mjs",
+ "minSpacing_m": 1068,
+ "rule": "flat dry 90 m core, water ≤ 700 m, wood ≤ 900 m, ≥ 300 m from the edge, ≥ 800 m apart",
+ "holds": [
+  {
+   "id": "town0",
+   "name": "Rathworth",
+   "x": 2700,
+   "y": 2370,
+   "water_m": 440,
+   "wood_m": 60,
+   "slope": null,
+   "town": true
+  },
+  {
+   "id": "town1",
+   "name": "Thornworth",
+   "x": 660,
+   "y": 660,
+   "water_m": null,
+   "wood_m": 200,
+   "slope": null,
+   "town": true
+  },
+  {
+   "id": "thornby",
+   "name": "Thornby",
+   "x": 2450,
+   "y": 700,
+   "water_m": 140,
+   "wood_m": 60,
+   "slope": 0.026,
+   "town": false
+  },
+  {
+   "id": "kettlewick",
+   "name": "Kettlewick",
+   "x": 2050,
+   "y": 3700,
+   "water_m": 260,
+   "wood_m": 40,
+   "slope": 0.051,
+   "town": false
+  },
+  {
+   "id": "stanmere",
+   "name": "Stanmere",
+   "x": 775,
+   "y": 2550,
+   "water_m": 680,
+   "wood_m": 20,
+   "slope": 0.068,
+   "town": false
+  },
+  {
+   "id": "brackenholt",
+   "name": "Brackenholt",
+   "x": 3675,
+   "y": 1375,
+   "water_m": 640,
+   "wood_m": 40,
+   "slope": 0.047,
+   "town": false
+  },
+  {
+   "id": "oakhurst",
+   "name": "Oakhurst",
+   "x": 3700,
+   "y": 2800,
+   "water_m": 640,
+   "wood_m": 20,
+   "slope": 0.024,
+   "town": false
+  },
+  {
+   "id": "fellgate",
+   "name": "Fellgate",
+   "x": 1675,
+   "y": 1975,
+   "water_m": 360,
+   "wood_m": 20,
+   "slope": 0.079,
+   "town": false
+  }
+ ]
+}

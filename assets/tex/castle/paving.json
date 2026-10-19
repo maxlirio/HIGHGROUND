@@ -1,0 +1,10 @@
+{
+ "name": "paving",
+ "tile_m": 4.0,
+ "res": 1024,
+ "avg_srgb": "#8c8576",
+ "rough_mean": 0.74,
+ "relief_m": 0.0237,
+ "seam": 1.374,
+ "notes": "worn flagstones"
+}

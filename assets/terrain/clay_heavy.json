@@ -1,0 +1,27 @@
+{
+  "name": "clay_heavy",
+  "tile_m": 4.0,
+  "res": 1024,
+  "avg_srgb": "#8e7554",
+  "avg_linear": [
+    0.2723,
+    0.1783,
+    0.0878
+  ],
+  "height_range_m": 0.0934,
+  "height_min_m": -0.0508,
+  "rough_mean": 0.755,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.049,
+    "height": 1.006,
+    "rough": 0.797
+  },
+  "notes": "Exposed clay: ochre-grey desiccation-crack polygons (two orders), plates curled at the rims, a few damp dark patches and embedded pebbles. Slick when wet.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "clay_heavy"
+  ]
+}

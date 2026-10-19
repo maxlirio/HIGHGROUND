@@ -1,0 +1,28 @@
+{
+  "name": "snow_light",
+  "tile_m": 8.0,
+  "res": 1024,
+  "avg_srgb": "#d8dbe0",
+  "avg_linear": [
+    0.6893,
+    0.7091,
+    0.7431
+  ],
+  "height_range_m": 0.3561,
+  "height_min_m": -0.1659,
+  "rough_mean": 0.72,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.088,
+    "height": 1.041,
+    "rough": 1.171
+  },
+  "notes": "Fresh lying snow: soft wind-sculpted drifts and sastrugi, blue shadows in hollows, a few dead grass heads poking through. Albedo capped at sRGB 240.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "snow_light",
+    "snow_deep"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "stone_paving",
+  "tile_m": 4.0,
+  "res": 1024,
+  "avg_srgb": "#8c7f69",
+  "avg_linear": [
+    0.2638,
+    0.2128,
+    0.14
+  ],
+  "height_range_m": 0.0505,
+  "height_min_m": -0.018,
+  "rough_mean": 0.844,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.015,
+    "height": 1.454,
+    "rough": 1.079
+  },
+  "notes": "Stone paving (village square / market): irregular laid flagstones 0.4-0.9 m of limestone and sandstone, worn edges, cracks, grass and moss in the joints, grime stains.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "stone_paving"
+  ]
+}
