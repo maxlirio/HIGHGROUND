@@ -1,0 +1,31 @@
+{
+  "name": "shallow_ford",
+  "tile_m": 6.0,
+  "res": 1024,
+  "avg_srgb": "#434c3d",
+  "avg_linear": [
+    0.0556,
+    0.0714,
+    0.0469
+  ],
+  "height_range_m": 0.0907,
+  "height_min_m": -0.0155,
+  "rough_mean": 0.049,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 0.957,
+    "height": 1.024,
+    "rough": 0.0
+  },
+  "notes": "Shallow ford (~0.2-0.4 m): clear water over a gravel and cobble bed, visible stones tinted green-brown by depth, a few stepping stones breaking the surface with wet dark rims. Height = WATER SURFACE (ripples) except the emergent stones.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "shallow_ford",
+    "ford",
+    "stream_bed"
+  ],
+  "water_role": "ford: albedo pre-bakes the bed seen through water",
+  "bed_height_note": "use water normal layers on top, alpha ~0.85"
+}

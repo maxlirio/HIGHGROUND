@@ -1,0 +1,31 @@
+{
+  "name": "churned_ground",
+  "tile_m": 10.0,
+  "res": 1024,
+  "avg_srgb": "#544431",
+  "avg_linear": [
+    0.0895,
+    0.0586,
+    0.0305
+  ],
+  "height_range_m": 0.3379,
+  "height_min_m": -0.1833,
+  "rough_mean": 0.875,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 0.823,
+    "height": 0.995,
+    "rough": 0.649
+  },
+  "notes": "Trampled/churned ground: hoof and boot prints, puddled wet hollows, clods, crushed grass remnants.",
+  "displace_m": 0.33794429898262024,
+  "aliases": [
+    "churned",
+    "trampled",
+    "mud_churned",
+    "trampled_ground"
+  ],
+  "macro_hint": "tile holds <=3 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "A-vegetated"
+}

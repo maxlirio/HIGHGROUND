@@ -1,0 +1,29 @@
+{
+  "name": "water_normal_b",
+  "tile_m": 4.0,
+  "res": 1024,
+  "avg_srgb": "#2c3e3a",
+  "avg_linear": [
+    0.0252,
+    0.0482,
+    0.0423
+  ],
+  "height_range_m": 0.034,
+  "height_min_m": -0.0173,
+  "rough_mean": 0.04,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 0.0,
+    "height": 1.03,
+    "rough": 0.0
+  },
+  "notes": "WATER NORMAL LAYER B (ripples / cat's-paws 3-40 cm). Scroll faster than A and at an angle; fade its strength with camera distance to avoid shimmer.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "deep_water",
+    "moat"
+  ],
+  "water_role": "normal layer B (small)"
+}

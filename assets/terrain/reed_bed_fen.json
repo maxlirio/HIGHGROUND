@@ -1,0 +1,27 @@
+{
+  "name": "reed_bed_fen",
+  "tile_m": 6.0,
+  "res": 1024,
+  "avg_srgb": "#6b6345",
+  "avg_linear": [
+    0.146,
+    0.1259,
+    0.0598
+  ],
+  "height_range_m": 0.7839,
+  "height_min_m": -0.07,
+  "rough_mean": 0.593,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 0.969,
+    "height": 0.972,
+    "rough": 0.868
+  },
+  "notes": "Reed bed / fen: dense Phragmites seen from above - upright buff-green leaves, purple-brown plumes, dead winter stems, glints of water in gaps. Heavy concealment.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "reed_bed_fen"
+  ]
+}

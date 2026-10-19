@@ -1,0 +1,27 @@
+{
+  "name": "burned_ground",
+  "tile_m": 12.0,
+  "res": 1024,
+  "avg_srgb": "#332f2b",
+  "avg_linear": [
+    0.0335,
+    0.0281,
+    0.024
+  ],
+  "height_range_m": 0.1834,
+  "height_min_m": -0.0774,
+  "rough_mean": 0.85,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.22,
+    "height": 1.338,
+    "rough": 1.244
+  },
+  "notes": "Burned ground: charred black stubble and char, pale grey-white ash drifts, scorched orange-brown soil, charred sticks, unburned straw patches at the margins.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "burned_ground"
+  ]
+}

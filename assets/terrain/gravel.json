@@ -1,0 +1,27 @@
+{
+  "name": "gravel",
+  "tile_m": 3.0,
+  "res": 1024,
+  "avg_srgb": "#7d7361",
+  "avg_linear": [
+    0.2052,
+    0.1705,
+    0.1195
+  ],
+  "height_range_m": 0.0749,
+  "height_min_m": -0.0346,
+  "rough_mean": 0.801,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.035,
+    "height": 0.994,
+    "rough": 0.969
+  },
+  "notes": "Gravel: packed sub-angular gravel 0.5-3 cm in sandy fines, road-metal/terrace gravel; fine patches and coarser lags.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "gravel"
+  ]
+}

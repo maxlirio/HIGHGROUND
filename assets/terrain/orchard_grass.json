@@ -1,0 +1,28 @@
+{
+  "name": "orchard_grass",
+  "tile_m": 12.0,
+  "res": 1024,
+  "avg_srgb": "#546430",
+  "avg_linear": [
+    0.0894,
+    0.1283,
+    0.0292
+  ],
+  "height_range_m": 0.6884,
+  "height_min_m": -0.04,
+  "rough_mean": 0.827,
+  "normal_boost": 0.5,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.102,
+    "height": 1.025,
+    "rough": 1.066
+  },
+  "notes": "Orchard sward: lush long grass, cow parsley, windfall apples, fallen leaves.",
+  "displace_m": 0.0,
+  "aliases": [
+    "orchard"
+  ],
+  "macro_hint": "tile holds <=3 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "A-vegetated"
+}

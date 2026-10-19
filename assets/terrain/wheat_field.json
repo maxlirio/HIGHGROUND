@@ -1,0 +1,31 @@
+{
+  "name": "wheat_field",
+  "tile_m": 10.0,
+  "res": 1024,
+  "avg_srgb": "#ac904b",
+  "avg_linear": [
+    0.4118,
+    0.2809,
+    0.0701
+  ],
+  "height_range_m": 1.2847,
+  "height_min_m": -0.045,
+  "rough_mean": 0.782,
+  "normal_boost": 0.5,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.001,
+    "height": 0.986,
+    "rough": 0.968
+  },
+  "notes": "Standing ripe wheat from above: dense golden ears combed by wind, lodged patches, poppies/cornflowers.",
+  "displace_m": 0.0,
+  "aliases": [
+    "wheat",
+    "standing_wheat",
+    "crops",
+    "cropland"
+  ],
+  "macro_hint": "tile holds <=3 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "A-vegetated"
+}

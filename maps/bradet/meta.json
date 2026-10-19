@@ -1,0 +1,407 @@
+{
+ "name": "The Bradet Levels",
+ "map_id": "bradet",
+ "generator": {
+  "script": "tools/map/make_map.py",
+  "seed": 42,
+  "archetype": "riverlands",
+  "relief": "rolling"
+ },
+ "size_m": 4000.0,
+ "res": 1025,
+ "cell_m": 3.90625,
+ "origin": "SW corner; +x east, +y north, metres; z up (metres above datum)",
+ "height_f32_row_order": "row 0 = SOUTH edge (y=0); index = j*res + i, x=i*cell, y=j*cell",
+ "png_row_order": "row 0 = NORTH edge (north-up images)",
+ "height_min_m": 42.51,
+ "height_max_m": 241.59,
+ "sea_level_m": null,
+ "water": {
+  "datum_note": "no sea on this map; water surface = height + water depth",
+  "river_surface_m": {
+   "enters": 75.0,
+   "exits": 45.0
+  },
+  "mere_level_m": null
+ },
+ "layers": {
+  "height.f32": "float32 LE terrain/bed height (m), south-first rows",
+  "water.f32": "float32 LE water depth (m), south-first rows (js/sim/map.js loads this)",
+  "surface.u8": "uint8 surface id (index into surfaceKeys), south-first rows, res x res",
+  "canopy.u8": "uint8 canopy / tall-vegetation height in metres above ground, south-first rows",
+  "vegetation.json": "tree & shrub instances {asset,x,y,rot,scale} in world metres"
+ },
+ "stats": {
+  "land_pits_filled": 5750,
+  "residual_pits": 0,
+  "max_upstream_area_km2_onmap": 13.17
+ },
+ "surfaceKeys": [
+  "short_meadow",
+  "tall_grass",
+  "flower_meadow",
+  "pasture",
+  "water_meadow",
+  "heath_heather",
+  "moorland",
+  "gorse_scrub",
+  "bracken",
+  "fallow",
+  "ploughed_field",
+  "standing_wheat",
+  "standing_barley",
+  "standing_oats_beans",
+  "stubble",
+  "orchard",
+  "kitchen_garden",
+  "open_forest",
+  "dense_forest",
+  "pine_forest",
+  "coppice",
+  "bramble_thicket",
+  "hedgerow",
+  "alder_carr",
+  "deadfall_clearing",
+  "bare_earth",
+  "dirt_track",
+  "village_street",
+  "trampled_ground",
+  "mud",
+  "clay_heavy",
+  "peat_bog",
+  "marsh",
+  "reed_bed_fen",
+  "shallow_ford",
+  "stream_bed",
+  "deep_water",
+  "riverbank_shingle",
+  "gravel",
+  "limestone_pavement",
+  "scree",
+  "cliff_rock",
+  "rock_slab",
+  "boulder_field",
+  "quarry_floor",
+  "ruins_rubble"
+ ],
+ "landuse": {
+  "generator": "tools/map/make_map.py",
+  "seed": 42,
+  "season": "late summer (harvest)",
+  "coverage_pct": {
+   "pasture": 20.6,
+   "coppice": 7.19,
+   "fallow": 6.51,
+   "short_meadow": 6.1,
+   "open_forest": 5.04,
+   "standing_wheat": 4.51,
+   "standing_oats_beans": 4.49,
+   "flower_meadow": 4.26,
+   "heath_heather": 4.1,
+   "water_meadow": 3.69,
+   "tall_grass": 3.44,
+   "bracken": 3.21,
+   "dense_forest": 3.09,
+   "marsh": 3.07,
+   "standing_barley": 2.97,
+   "stubble": 2.93,
+   "hedgerow": 2.76,
+   "moorland": 2.32,
+   "reed_bed_fen": 1.25,
+   "alder_carr": 1.17,
+   "gorse_scrub": 1.16,
+   "bramble_thicket": 0.97,
+   "ploughed_field": 0.95,
+   "pine_forest": 0.75,
+   "deep_water": 0.65,
+   "kitchen_garden": 0.6,
+   "trampled_ground": 0.47,
+   "dirt_track": 0.42,
+   "peat_bog": 0.2,
+   "shallow_ford": 0.2,
+   "deadfall_clearing": 0.14,
+   "orchard": 0.13,
+   "boulder_field": 0.13,
+   "stream_bed": 0.11,
+   "mud": 0.1,
+   "limestone_pavement": 0.08,
+   "riverbank_shingle": 0.05,
+   "quarry_floor": 0.05,
+   "rock_slab": 0.04,
+   "village_street": 0.03,
+   "cliff_rock": 0.03,
+   "gravel": 0.01,
+   "scree": 0.01,
+   "bare_earth": 0.0,
+   "clay_heavy": 0.0,
+   "ruins_rubble": 0.0
+  },
+  "vegetation_instances": 43984,
+  "settlements_used": [
+   "Rathworth",
+   "Thornworth",
+   "Gosstead",
+   "Selwick",
+   "Bradcote",
+   "Blackwell",
+   "Har Scar Keep (ruin)",
+   "Wayside Chapel",
+   "Gallows at the Gap"
+  ],
+  "roads_used": 27
+ },
+ "features": [
+  {
+   "name": "Rathworth (blue town)",
+   "type": "town_site",
+   "xy_m": [
+    2699.5,
+    2370.4
+   ],
+   "grid_ij": [
+    691,
+    607
+   ],
+   "z_m": 106.0,
+   "note": "Blue home ground: a flat dry rise with its own farmland."
+  },
+  {
+   "name": "Rathworth farmland",
+   "type": "farmland",
+   "xy_m": [
+    2536.0,
+    2650.5
+   ],
+   "grid_ij": [
+    649,
+    679
+   ],
+   "z_m": 91.7,
+   "note": "Rolling fields around Rathworth."
+  },
+  {
+   "name": "Thornworth (red town)",
+   "type": "town_site",
+   "xy_m": [
+    660.3,
+    660.4
+   ],
+   "grid_ij": [
+    169,
+    169
+   ],
+   "z_m": 101.5,
+   "note": "Red home ground: a flat dry rise with its own farmland."
+  },
+  {
+   "name": "Thornworth farmland",
+   "type": "farmland",
+   "xy_m": [
+    465.5,
+    436.6
+   ],
+   "grid_ij": [
+    119,
+    112
+   ],
+   "z_m": 104.8,
+   "note": "Rolling fields around Thornworth."
+  },
+  {
+   "name": "River Bradet",
+   "type": "river",
+   "xy_m": [
+    1950.2,
+    2573.9
+   ],
+   "grid_ij": [
+    499,
+    659
+   ],
+   "z_m": 61.8,
+   "note": "Unfordable except at the fords; the water is the front line."
+  },
+  {
+   "name": "Grey Ford",
+   "type": "ford",
+   "xy_m": [
+    2019.8,
+    2770.7
+   ],
+   "grid_ij": [
+    517,
+    709
+   ],
+   "z_m": 65.1,
+   "note": "Wide gravel riffle ~0.4 m deep; a fighting crossing."
+  },
+  {
+   "name": "Nether Ford",
+   "type": "ford",
+   "xy_m": [
+    2721.1,
+    911.4
+   ],
+   "grid_ij": [
+    697,
+    233
+   ],
+   "z_m": 50.4,
+   "note": "Wide gravel riffle ~0.4 m deep; a fighting crossing."
+  },
+  {
+   "name": "Bradet Bridge site",
+   "type": "bridge_site",
+   "xy_m": [
+    2144.0,
+    1875.2
+   ],
+   "grid_ij": [
+    549,
+    480
+   ],
+   "z_m": 62.5,
+   "note": "Narrow deep reach with firm raised banks: the place to bridge."
+  },
+  {
+   "name": "River Crake",
+   "type": "river",
+   "xy_m": [
+    3369.6,
+    2015.9
+   ],
+   "grid_ij": [
+    863,
+    516
+   ],
+   "z_m": 75.4,
+   "note": "Unfordable except at the fords; the water is the front line."
+  },
+  {
+   "name": "Monk's Ford",
+   "type": "ford",
+   "xy_m": [
+    3024.5,
+    1893.5
+   ],
+   "grid_ij": [
+    774,
+    485
+   ],
+   "z_m": 72.9,
+   "note": "Wide gravel riffle ~0.4 m deep; a fighting crossing."
+  },
+  {
+   "name": "Har Scar",
+   "type": "rocky_upland",
+   "xy_m": [
+    207.0,
+    3378.9
+   ],
+   "grid_ij": [
+    53,
+    865
+   ],
+   "z_m": 241.6,
+   "note": "Rocky upland with crags and scree: slow going, superb observation."
+  },
+  {
+   "name": "Bir Fell Gap",
+   "type": "defile",
+   "xy_m": [
+    1252.5,
+    2021.3
+   ],
+   "grid_ij": [
+    321,
+    517
+   ],
+   "z_m": 84.2,
+   "note": "Narrow pass between two steep hills: a column is trapped; a few can hold it."
+  },
+  {
+   "name": "Ket Scar",
+   "type": "hill",
+   "xy_m": [
+    1222.7,
+    1675.8
+   ],
+   "grid_ij": [
+    313,
+    429
+   ],
+   "z_m": 157.1,
+   "note": "A jaw of the pass; steep inner face."
+  },
+  {
+   "name": "Elm Pike",
+   "type": "hill",
+   "xy_m": [
+    1230.5,
+    2347.7
+   ],
+   "grid_ij": [
+    315,
+    601
+   ],
+   "z_m": 158.1,
+   "note": "A jaw of the pass; steep inner face."
+  },
+  {
+   "name": "The Moss",
+   "type": "marsh",
+   "xy_m": [
+    1996.1,
+    2074.2
+   ],
+   "grid_ij": [
+    511,
+    531
+   ],
+   "z_m": 60.8,
+   "note": "Floodplain marsh: infantry wade, cavalry and carts bog down."
+  },
+  {
+   "name": "The Open Field",
+   "type": "open_plain",
+   "xy_m": [
+    884.0,
+    959.6
+   ],
+   "grid_ij": [
+    226,
+    246
+   ],
+   "z_m": 98.8,
+   "note": "Long gentle open plain: cavalry ground."
+  },
+  {
+   "name": "Wyn Brook",
+   "type": "wooded_valley",
+   "xy_m": [
+    1627.3,
+    2923.8
+   ],
+   "grid_ij": [
+    417,
+    749
+   ],
+   "z_m": 68.0,
+   "note": "Tributary valley: a covered approach."
+  },
+  {
+   "name": "Lang Gill",
+   "type": "wooded_valley",
+   "xy_m": [
+    1455.7,
+    3067.9
+   ],
+   "grid_ij": [
+    373,
+    785
+   ],
+   "z_m": 75.8,
+   "note": "Tributary valley: a covered approach."
+  }
+ ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "ice",
+  "tile_m": 16.0,
+  "res": 1024,
+  "avg_srgb": "#434c52",
+  "avg_linear": [
+    0.0559,
+    0.0726,
+    0.0849
+  ],
+  "height_range_m": 0.029,
+  "height_min_m": -0.0074,
+  "rough_mean": 0.113,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.065,
+    "height": 1.341,
+    "rough": 1.12
+  },
+  "notes": "Lake/river ice: dark clear black ice with white fracture networks and trapped bubble streams, drifted snow patches. Treacherous footing; may break (sim).",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "ice",
+    "ice_sheet"
+  ]
+}

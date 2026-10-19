@@ -1,0 +1,10 @@
+{
+ "name": "iron",
+ "tile_m": 1.0,
+ "res": 512,
+ "avg_srgb": "#403d3a",
+ "rough_mean": 0.645,
+ "relief_m": 0.0024,
+ "seam": 0.954,
+ "notes": "forged iron with rust"
+}

@@ -1,0 +1,27 @@
+{
+  "name": "peat_bog",
+  "tile_m": 8.0,
+  "res": 1024,
+  "avg_srgb": "#4e432c",
+  "avg_linear": [
+    0.0766,
+    0.0556,
+    0.0252
+  ],
+  "height_range_m": 0.6039,
+  "height_min_m": -0.0838,
+  "rough_mean": 0.581,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.331,
+    "height": 1.204,
+    "rough": 1.206
+  },
+  "notes": "Peat bog: black-brown peat, sphagnum hummocks (green/rust/ochre), cotton-grass tufts, heather sprigs, dark peaty bog pools (~15%). Impassable-ish for horse and wagon.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "peat_bog"
+  ]
+}

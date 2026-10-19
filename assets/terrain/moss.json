@@ -1,0 +1,28 @@
+{
+  "name": "moss",
+  "tile_m": 6.0,
+  "res": 1024,
+  "avg_srgb": "#666e2b",
+  "avg_linear": [
+    0.1333,
+    0.1551,
+    0.0238
+  ],
+  "height_range_m": 0.1957,
+  "height_min_m": -0.0509,
+  "rough_mean": 0.899,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.134,
+    "height": 1.047,
+    "rough": 0.835
+  },
+  "notes": "Moss carpet: cushion mounds in bright to olive greens, sphagnum, a few leaves and twigs.",
+  "displace_m": 0.0,
+  "aliases": [
+    "mossy_ground"
+  ],
+  "macro_hint": "tile holds <=3 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "A-vegetated"
+}

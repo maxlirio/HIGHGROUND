@@ -1,0 +1,34 @@
+{
+  "name": "flood_water",
+  "tile_m": 8.0,
+  "res": 1024,
+  "avg_srgb": "#71604a",
+  "avg_linear": [
+    0.1648,
+    0.1181,
+    0.0684
+  ],
+  "height_range_m": 0.082,
+  "height_min_m": -0.0354,
+  "rough_mean": 0.131,
+  "normal_boost": 1.0,
+  "normal": "OpenGL +Y (three.js default)",
+  "seam_score": {
+    "albedo": 1.57,
+    "height": 1.315,
+    "rough": 1.045
+  },
+  "notes": "Muddy flood water: opaque silt-brown sheet water with foam/scum streaks, drifting twigs and leaves. Colour notes in json; pair with water_normal_a/b for motion.",
+  "macro_hint": "tile holds <=4 m structure; add world-space macro tint/variation in the splat shader to break repetition",
+  "family": "B-mineral",
+  "sim_terrain": [
+    "deep_water"
+  ],
+  "water_role": "flood surface albedo (opaque)",
+  "colour_notes": {
+    "flood_peak": "#6b5a43",
+    "flood_receding": "#7a6a52 with more foam",
+    "ditch_standing": "#4e4636",
+    "opacity": "treat as opaque past 0.1 m"
+  }
+}

@@ -1,0 +1,10 @@
+{
+ "name": "slate",
+ "tile_m": 4.0,
+ "res": 1024,
+ "avg_srgb": "#4e5155",
+ "rough_mean": 0.604,
+ "relief_m": 0.0213,
+ "seam": 8.039,
+ "notes": "slate courses ~17 cm exposure; V up-slope"
+}
